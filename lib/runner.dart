@@ -13,7 +13,6 @@ Future<void> run() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Fix orientation.
-  // TODO(init-project): change as needed or remove.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   _initLogger();

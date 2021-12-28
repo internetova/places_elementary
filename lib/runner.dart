@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_template/features/app/app.dart';
-import 'package:flutter_template/util/crashlytics_strategy.dart';
+import 'package:places_elementary/features/app/app.dart';
+import 'package:places_elementary/util/crashlytics_strategy.dart';
 import 'package:surf_logger/surf_logger.dart';
 
 /// App launch.
@@ -13,7 +13,6 @@ Future<void> run() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Fix orientation.
-  // TODO(init-project): change as needed or remove.
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   _initLogger();

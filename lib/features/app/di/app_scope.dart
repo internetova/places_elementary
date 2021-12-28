@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/features/navigation/service/coordinator.dart';
-import 'package:flutter_template/util/default_error_handler.dart';
+import 'package:places_elementary/config/app_config.dart';
+import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/util/default_error_handler.dart';
 
 /// Scope of dependencies which need through all app's life.
 class AppScope implements IAppScope {

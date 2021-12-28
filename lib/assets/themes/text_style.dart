@@ -1,5 +1,5 @@
 import 'package:flutter/painting.dart';
-import 'package:flutter_template/assets/colors/colors.dart';
+import 'package:places_elementary/assets/colors/colors.dart';
 
 //ignore_for_file: public_member_api_docs
 

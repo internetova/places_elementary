@@ -1,6 +1,6 @@
-import 'package:flutter_template/features/debug/screens/debug_screen/debug_screen.dart';
-import 'package:flutter_template/features/navigation/domain/entity/coordinate.dart';
-import 'package:flutter_template/features/temp/screens/temp_screen/temp_screen.dart';
+import 'package:places_elementary/features/debug/screens/debug_screen/debug_screen.dart';
+import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
+import 'package:places_elementary/features/temp/screens/temp_screen/temp_screen.dart';
 
 /// A set of routes for the entire app.
 class AppCoordinate implements Coordinate {

@@ -1,9 +1,9 @@
-import 'package:flutter_template/config/environment/build_types.dart';
-import 'package:flutter_template/config/app_config.dart';
-import 'package:flutter_template/config/debug_options.dart';
-import 'package:flutter_template/config/environment/environment.dart';
-import 'package:flutter_template/config/urls.dart';
-import 'package:flutter_template/runner.dart';
+import 'package:places_elementary/config/app_config.dart';
+import 'package:places_elementary/config/debug_options.dart';
+import 'package:places_elementary/config/environment/build_types.dart';
+import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/config/urls.dart';
+import 'package:places_elementary/runner.dart';
 
 /// Main entry point of app.
 void main() {

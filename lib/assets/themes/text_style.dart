@@ -11,7 +11,7 @@ import 'package:flutter/painting.dart';
 /// Super small 12
 
 /// Стили текстов
-abstract class AppTypography {
+class AppTypography {
   static const textLargeTitle32Bold = TextStyle(
     fontSize: 32.0,
     height: 1.125,
@@ -84,4 +84,6 @@ abstract class AppTypography {
     height: 1.25,
     fontWeight: FontWeight.w400,
   );
+
+  AppTypography._();
 }

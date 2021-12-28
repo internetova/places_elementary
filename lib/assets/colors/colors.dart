@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 /// Цвета приложения
 /// У темной и светлой темы в некоторых случаях будут общие цвета, поэтому определение цветов
 /// сделала публичным
-abstract class AppColors {
+class AppColors {
   /// цвета и названия из макета фигмы
   static const colorWhite = Colors.white;
   static const colorBackground = Color(0xffF5F5F5);
@@ -57,4 +57,6 @@ abstract class AppColors {
   static const Color darkDividerColor = colorInactiveBlack;
   static const Color darkIconColor = colorWhite;
   static const Color darkButtonColor = colorBlackGreen;
+
+  AppColors._();
 }

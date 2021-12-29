@@ -17,9 +17,9 @@ class DebugScreen extends ElementaryWidget<IDebugScreenWidgetModel> {
   Widget build(IDebugScreenWidgetModel wm) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Экран отладки',
-          style: textMedium20,
+          style: AppTypography.textDebugMedium,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

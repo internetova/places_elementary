@@ -22,6 +22,8 @@ dev_dependencies:
   elementary_test: ^0.1.2
   flutter_test:
     sdk: flutter
+  freezed: ^1.1.0
+  freezed_annotation: ^1.1.0
   json_serializable: ^6.1.1
   retrofit_generator: ^3.0.0
   surf_lint_rules: ^1.4.1

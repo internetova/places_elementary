@@ -43,6 +43,7 @@ class Coordinator extends ChangeNotifier {
   }
 
   /// Main method for navigation.
+  // ignore: long-parameter-list
   void navigate(
     BuildContext context,
     Coordinate target, {

@@ -23,6 +23,7 @@ DebugScreenWidgetModel debugScreenWidgetModelFactory(
     appDependencies.applicationRebuilder,
   );
   final coordinator = appDependencies.coordinator;
+
   return DebugScreenWidgetModel(model, coordinator);
 }
 
@@ -135,11 +136,8 @@ class DebugScreenWidgetModel extends WidgetModel<DebugScreen, DebugScreenModel>
       _urlState.accept(UrlType.dev);
     }
 
-    if (_proxyUrl != null && _proxyUrl!.isNotEmpty) {
-      proxyEditingController.text = _proxyUrl!;
-    } else {
-      proxyEditingController.text = _emptyString;
-    }
+    proxyEditingController.text =
+        _proxyUrl != null && _proxyUrl!.isNotEmpty ? _proxyUrl! : _emptyString;
     _debugOptionsState.accept(config.debugOptions);
   }
 }

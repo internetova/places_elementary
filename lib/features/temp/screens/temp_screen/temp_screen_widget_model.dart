@@ -8,6 +8,7 @@ TempScreenWidgetModel initScreenWidgetModelFactory(
   BuildContext context,
 ) {
   final model = TempScreenModel();
+
   return TempScreenWidgetModel(model);
 }
 

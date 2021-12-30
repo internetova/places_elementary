@@ -34,6 +34,7 @@ class CrashlyticsRemoteLogStrategy extends RemoteUserLogStrategy {
     if (info != null) {
       if (info is num || info is String || info is bool) {
         _crashlytics.setCustomKey(key, info);
+
         return;
       } else {
         _crashlytics.setCustomKey(key, info.toString());

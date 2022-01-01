@@ -2,8 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'place_response.g.dart';
 
-//ignore_for_file: public_member_api_docs
-
 /// Ответ сервера - данные по интересному месту
 /// [id] - ид места
 /// [lat] - широта

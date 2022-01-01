@@ -2,9 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'place_request.g.dart';
 
-//ignore_for_file: public_member_api_docs
-
-/// Отправляем на сервер новое место
+/// Модель при создании нового места - отправляем на сервер новое место
 /// [lat] - широта
 /// [lng] - долгота
 /// [name] - имя

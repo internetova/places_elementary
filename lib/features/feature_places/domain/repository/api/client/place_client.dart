@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:places_elementary/api/constants/place_api_urls.dart';
-import 'package:places_elementary/api/data/place_response.dart';
-import 'package:places_elementary/api/data/places_filter_request.dart';
+import 'package:places_elementary/features/feature_places/domain/repository/api/constants/place_api_urls.dart';
+import 'package:places_elementary/features/feature_places/domain/repository/api/data/place_response.dart';
+import 'package:places_elementary/features/feature_places/domain/repository/api/data/places_filter_request.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'place_api.g.dart';
+part 'place_client.g.dart';
 
 /// Интерфейс API для работы с местами.
 @RestApi()

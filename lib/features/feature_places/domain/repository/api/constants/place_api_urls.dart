@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs
-
 /// Адреса для работы с местами
 class PlaceApiUrls {
   static const String places = '/place';

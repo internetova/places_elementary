@@ -1,5 +1,5 @@
-//ignore_for_file: public_member_api_docs
 import 'package:flutter/material.dart';
+import 'package:places_elementary/features/feature_places/domain/entity/object_position.dart';
 
 /// Дефолтные значения
 class AppDefaultValues {
@@ -8,8 +8,8 @@ class AppDefaultValues {
   static const RangeValues rangeSliderFilterAfterReset = RangeValues(100.0, 3000.0);
 
   /// Дефолтные значения фильтра если ничего не сохранено в SharedPreferences
-  static const double searchFilterRadius = 10000.0; // в метрах
-  static const List<String> searchFilterTypeFilter = [
+  static const double filterRadius = 10000.0; // в метрах
+  static const List<String> filterTypesPlaces = [
     'park',
     'cafe',
     'other',
@@ -17,6 +17,12 @@ class AppDefaultValues {
     'restaurant',
     'hotel',
   ];
+
+  /// Красная площадь
+  final defaultPosition = ObjectPosition(
+    lat: 55.754194,
+    lng: 37.620139,
+  );
 
   AppDefaultValues._();
 }

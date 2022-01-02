@@ -10,6 +10,7 @@ class AppTheme {
   AppTheme();
 
   /// Светлая тема
+  // ignore: long-method
   static ThemeData _buildTheme() {
     final _base = ThemeData.light();
 
@@ -92,13 +93,13 @@ class AppTheme {
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: AppColors.lightErrorColor.withOpacity(0.40),
+            color: AppColors.lightErrorColor.withOpacity(0.4),
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: AppColors.lightErrorColor.withOpacity(0.40),
+            color: AppColors.lightErrorColor.withOpacity(0.4),
             width: 2,
           ),
         ),
@@ -137,6 +138,7 @@ class AppTheme {
   }
 
   /// Темная тема
+  // ignore: long-method
   static ThemeData _buildThemeDark() {
     final _base = ThemeData.dark();
 
@@ -218,13 +220,13 @@ class AppTheme {
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: AppColors.darkErrorColor.withOpacity(0.40),
+            color: AppColors.darkErrorColor.withOpacity(0.4),
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: AppColors.darkErrorColor.withOpacity(0.40),
+            color: AppColors.darkErrorColor.withOpacity(0.4),
             width: 2,
           ),
         ),

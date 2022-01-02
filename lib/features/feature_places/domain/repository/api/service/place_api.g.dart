@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place_client.dart';
+part of 'place_api.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -22,7 +22,7 @@ class _PlaceApi implements PlaceApi {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<PlaceResponse>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, null,
+                .compose(_dio.options, '/place',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
@@ -41,7 +41,7 @@ class _PlaceApi implements PlaceApi {
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<PlaceResponse>>(
             Options(method: 'POST', headers: _headers, extra: _extra)
-                .compose(_dio.options, null,
+                .compose(_dio.options, '/place',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
@@ -59,7 +59,7 @@ class _PlaceApi implements PlaceApi {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<PlaceResponse>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, null,
+                .compose(_dio.options, '/place',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PlaceResponse.fromJson(_result.data!);

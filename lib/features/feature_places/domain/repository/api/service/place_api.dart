@@ -4,7 +4,7 @@ import 'package:places_elementary/features/feature_places/domain/repository/api/
 import 'package:places_elementary/features/feature_places/domain/repository/api/data/places_filter_request.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'place_client.g.dart';
+part 'place_api.g.dart';
 
 /// Интерфейс API для работы с местами.
 @RestApi()

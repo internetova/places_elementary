@@ -91,9 +91,8 @@ class AppScope implements IAppScope {
   PlacesService _initPlacesService(Dio dio) {
     _placeApi = PlaceApi(dio);
     _placesRepository = PlacesRepository(_placeApi);
-    _placesService = PlacesService(_placesRepository);
 
-    return _placesService;
+    return PlacesService(_placesRepository);
   }
 }
 

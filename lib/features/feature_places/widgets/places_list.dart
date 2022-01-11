@@ -23,7 +23,7 @@ class PlacesList extends StatelessWidget {
                 return Padding(
                   padding: EdgeInsets.fromLTRB(
                     AppSizes.paddingStandard,
-                    index == 0 ? 34 : 0,
+                    index == 0 ? AppSizes.paddingStandard * 2 : 0,
                     AppSizes.paddingStandard,
                     AppSizes.paddingStandard,
                   ),

@@ -64,7 +64,7 @@ class _Card extends StatelessWidget {
                     width: double.infinity,
                     height: 96,
                     borderRadius: BorderRadius.zero,
-                    background: Theme.of(context).colorScheme.inactiveBlack,
+                    background: Theme.of(context).colorScheme.secondary.withOpacity(0.1),
                     shimmerColor: Theme.of(context).primaryColorDark,
                   ),
                   Positioned(

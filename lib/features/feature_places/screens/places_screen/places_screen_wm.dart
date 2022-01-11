@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 
 abstract class IPlacesScreenWidgetModel extends IWidgetModel {
   ListenableState<EntityState<List<Place>>> get placesState;
+
+  Future<void> refreshPlaces();
 }
 
 PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext context) {
@@ -17,7 +19,7 @@ PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext conte
   return PlacesScreenWidgetModel(model);
 }
 
-/// Default widget model for PlacesScreenWidget
+/// Default widget model for PlacesScreen
 class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenModel>
     implements IPlacesScreenWidgetModel {
   late final _placesState = EntityStateNotifier<List<Place>>();
@@ -33,6 +35,10 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
 
     _init();
   }
+
+  /// Повторный запрос данных
+  @override
+  Future<void> refreshPlaces() async => _init();
 
   Future<void> _init() async {
     _placesState.loading();

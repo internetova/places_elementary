@@ -3,20 +3,30 @@ import 'package:places_elementary/features/feature_places/domain/entity/place.da
 import 'package:places_elementary/features/feature_places/widgets/places_list.dart';
 import 'package:places_elementary/features/feature_places/widgets/places_sliver_appbar.dart';
 
+typedef FutureVoidCallback = Future<void> Function();
+
 class PlacesBuilder extends StatelessWidget {
   final List<Place> data;
+  final FutureVoidCallback refreshPlaces;
 
-  const PlacesBuilder({Key? key, required this.data}) : super(key: key);
+  const PlacesBuilder({
+    Key? key,
+    required this.data,
+    required this.refreshPlaces,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            const PlacesSliverAppBar(),
-            PlacesList(data: data),
-          ],
+    return RefreshIndicator(
+      onRefresh: refreshPlaces,
+      child: Scaffold(
+        body: SafeArea(
+          child: CustomScrollView(
+            slivers: [
+              const PlacesSliverAppBar(),
+              PlacesList(data: data),
+            ],
+          ),
         ),
       ),
     );

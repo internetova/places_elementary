@@ -18,6 +18,7 @@ class AppSizes {
  static const double cardSizeSquareImgBig = 72;
  static const double splashRadiusSmall = 18;
  static const double splashRadiusMedium = 28;
+ static const double errorIconSize = 64;
 
   /// частые отступы
  static const sizedBoxW4 = SizedBox(width: 4);

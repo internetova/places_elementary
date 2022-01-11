@@ -36,7 +36,7 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
 
   Future<void> _init() async {
     _placesState.loading();
-    // final places = await model.getAllPlaces();
-    // _placesState.content(places);
+    final places = await model.getAllPlaces();
+    _placesState.content(places);
   }
 }

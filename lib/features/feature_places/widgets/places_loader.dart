@@ -3,6 +3,7 @@ import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/common/constants/app_default_values.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/placeholder/skeleton.dart';
+import 'package:places_elementary/features/feature_places/widgets/places_appbar.dart';
 
 /// Виджет списка мест для состояния загрузки
 class PlacesLoader extends StatelessWidget {
@@ -15,10 +16,21 @@ class PlacesLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: List.generate(
-        4,
-        (index) => _Card(isLoading: isLoading),
+    return Scaffold(
+      appBar: const PlacesAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.paddingStandard,
+          AppSizes.paddingStandard * 2,
+          AppSizes.paddingStandard,
+          AppSizes.paddingStandard,
+        ),
+        child: ListView(
+          children: List.generate(
+            3,
+            (index) => _Card(isLoading: isLoading),
+          ),
+        ),
       ),
     );
   }

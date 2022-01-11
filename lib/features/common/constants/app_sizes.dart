@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//ignore_for_file: public_member_api_docs
 /// Часто используемые размеры, значения, маленькие виджеты
 class AppSizes {
   /// размеры элементов
@@ -19,6 +18,7 @@ class AppSizes {
  static const double splashRadiusSmall = 18;
  static const double splashRadiusMedium = 28;
  static const double errorIconSize = 64;
+ static const double paddingStandard = 16;
 
   /// частые отступы
  static const sizedBoxW4 = SizedBox(width: 4);

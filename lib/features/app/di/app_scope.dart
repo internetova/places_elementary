@@ -5,6 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:elementary/elementary.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/feature_places/domain/repository/api/service/place_api.dart';
+import 'package:places_elementary/features/feature_places/domain/repository/place_repository.dart';
+import 'package:places_elementary/features/feature_places/service/places_service.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/util/default_error_handler.dart';
 
@@ -14,6 +17,11 @@ class AppScope implements IAppScope {
   late final ErrorHandler _errorHandler;
   late final VoidCallback _applicationRebuilder;
   late final Coordinator _coordinator;
+
+  // Места
+  late final PlaceApi _placeApi;
+  late final PlacesRepository _placesRepository;
+  late final PlacesService _placesService;
 
   @override
   Dio get dio => _dio;
@@ -27,6 +35,9 @@ class AppScope implements IAppScope {
   @override
   Coordinator get coordinator => _coordinator;
 
+  @override
+  PlacesService get placesService => _placesService;
+
   /// Create an instance [AppScope].
   AppScope({
     required VoidCallback applicationRebuilder,
@@ -37,6 +48,8 @@ class AppScope implements IAppScope {
     _dio = _initDio(additionalInterceptors);
     _errorHandler = DefaultErrorHandler();
     _coordinator = Coordinator();
+
+    _placesService = _initPlacesService(_dio);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -73,6 +86,14 @@ class AppScope implements IAppScope {
 
     return dio;
   }
+
+  /// Работа с местами
+  PlacesService _initPlacesService(Dio dio) {
+    _placeApi = PlaceApi(dio);
+    _placesRepository = PlacesRepository(_placeApi);
+
+    return PlacesService(_placesRepository);
+  }
 }
 
 /// App dependencies.
@@ -88,4 +109,7 @@ abstract class IAppScope {
 
   /// Class that coordinates navigation for the whole app.
   Coordinator get coordinator;
+
+  /// Сервис для работы с местами
+  PlacesService get placesService;
 }

@@ -11,9 +11,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_svg: ^1.0.0
   logger: ^1.1.0
   provider: ^6.0.1
   retrofit: ^3.0.0
+  shimmer: ^2.0.0
   surf_logger: ^1.0.1
 
 dev_dependencies:

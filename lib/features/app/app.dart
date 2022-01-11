@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/debug_options.dart';
 import 'package:places_elementary/config/environment/environment.dart';
@@ -58,6 +59,10 @@ class _AppState extends State<App> {
         /// This is for navigation.
         routeInformationParser: AppRouteInformationParser(),
         routerDelegate: AppRouterDelegate(_scope.coordinator),
+
+        /// Тема приложения
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
       ),
     );
   }

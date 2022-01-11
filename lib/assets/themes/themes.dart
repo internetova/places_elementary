@@ -3,11 +3,11 @@ import 'package:places_elementary/assets/colors/colors.dart';
 import 'package:places_elementary/assets/themes/text_style.dart';
 
 class AppTheme {
-  ThemeData get lightTheme => _buildTheme();
+  static ThemeData get lightTheme => _buildTheme();
 
-  ThemeData get darkTheme => _buildThemeDark();
+  static ThemeData get darkTheme => _buildThemeDark();
 
-  AppTheme();
+  AppTheme._();
 
   /// Светлая тема
   // ignore: long-method

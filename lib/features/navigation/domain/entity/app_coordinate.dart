@@ -1,14 +1,34 @@
 import 'package:places_elementary/features/debug/screens/debug_screen/debug_screen.dart';
+import 'package:places_elementary/features/feature_favorites/screens/favorites_screen.dart';
+import 'package:places_elementary/features/feature_main/screens/main_screen/main_screen.dart';
+import 'package:places_elementary/features/feature_map/screens/map_screen.dart';
+import 'package:places_elementary/features/feature_places/screens/places_screen/places_screen.dart';
+import 'package:places_elementary/features/feature_settings/screens/settings_screen.dart';
 import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
 import 'package:places_elementary/features/temp/screens/temp_screen/temp_screen.dart';
 
 /// A set of routes for the entire app.
 class AppCoordinate implements Coordinate {
-  /// Initialization screens([TempScreen]).
+  /// Initialization screens ([TempScreen]).
   static const initScreen = AppCoordinate._('temp');
 
-  /// Debug screens([DebugScreen]).
+  /// Debug screens ([DebugScreen]).
   static const debugScreen = AppCoordinate._('debug_screen');
+
+  /// Главный экран ([MainScreen]).
+  static const mainScreen = AppCoordinate._('main_screen');
+
+  /// Список мест ([PlacesScreen]).
+  static const placesScreen = AppCoordinate._('places_screen');
+
+  /// Места на карте ([MapScreen]).
+  static const mapScreen = AppCoordinate._('map_screen');
+
+  /// Избранное ([FavoritesScreen]).
+  static const favoritesScreen = AppCoordinate._('favorites_screen');
+
+  /// Настройки ([SettingsScreen]).
+  static const settingsScreen = AppCoordinate._('settings_screen');
 
   /// Initialization screens(it can be any screens).
   static const initial = initScreen;
@@ -25,4 +45,9 @@ class AppCoordinate implements Coordinate {
 final Map<AppCoordinate, CoordinateBuilder> appCoordinates = {
   AppCoordinate.initial: (_, __) => const TempScreen(),
   AppCoordinate.debugScreen: (_, __) => const DebugScreen(),
+  AppCoordinate.mainScreen: (_, __) => const MainScreen(),
+  AppCoordinate.placesScreen: (_, __) => const PlacesScreen(),
+  AppCoordinate.mapScreen: (_, __) => const MapScreen(),
+  AppCoordinate.favoritesScreen: (_, __) => const FavoritesScreen(),
+  AppCoordinate.settingsScreen: (_, __) => const SettingsScreen(),
 };

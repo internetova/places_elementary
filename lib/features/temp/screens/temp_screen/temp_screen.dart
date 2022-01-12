@@ -12,6 +12,29 @@ class TempScreen extends ElementaryWidget<TempScreenWidgetModel> {
 
   @override
   Widget build(TempScreenWidgetModel wm) {
-    return const Scaffold();
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('TempScreen'),
+              const SizedBox(height: 10),
+              const Text('Тут будет SplashScreen'),
+              const SizedBox(height: 60),
+              TextButton(
+                onPressed: wm.goPlaceScreen,
+                child: const Text('go PlacesScreen'),
+              ),
+              const SizedBox(height: 10),
+              TextButton(
+                onPressed: wm.goMainScreen,
+                child: const Text('go MainScreen'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

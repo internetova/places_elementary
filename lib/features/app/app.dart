@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/config/app_config.dart';
@@ -48,13 +49,10 @@ class _AppState extends State<App> {
         /// Debug configuration.
         showPerformanceOverlay: _getDebugConfig().showPerformanceOverlay,
         debugShowMaterialGrid: _getDebugConfig().debugShowMaterialGrid,
-        checkerboardRasterCacheImages:
-            _getDebugConfig().checkerboardRasterCacheImages,
-        checkerboardOffscreenLayers:
-            _getDebugConfig().checkerboardOffscreenLayers,
+        checkerboardRasterCacheImages: _getDebugConfig().checkerboardRasterCacheImages,
+        checkerboardOffscreenLayers: _getDebugConfig().checkerboardOffscreenLayers,
         showSemanticsDebugger: _getDebugConfig().showSemanticsDebugger,
-        debugShowCheckedModeBanner:
-            _getDebugConfig().debugShowCheckedModeBanner,
+        debugShowCheckedModeBanner: _getDebugConfig().debugShowCheckedModeBanner,
 
         /// This is for navigation.
         routeInformationParser: AppRouteInformationParser(),
@@ -89,6 +87,7 @@ class _AppState extends State<App> {
 const _localizations = [Locale('ru', 'RU')];
 
 const _localizationsDelegates = [
+  AppLocalizations.delegate,
   GlobalMaterialLocalizations.delegate,
   GlobalWidgetsLocalizations.delegate,
   GlobalCupertinoLocalizations.delegate,

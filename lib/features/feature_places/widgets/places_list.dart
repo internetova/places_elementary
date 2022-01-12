@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/assets/strings/app_strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/error/error_state_widget.dart';
 import 'package:places_elementary/features/feature_places/domain/entity/place.dart';
@@ -35,10 +35,10 @@ class PlacesList extends StatelessWidget {
               childCount: data.length,
             ),
           )
-        : const SliverFillRemaining(
+        : SliverFillRemaining(
             child: ErrorStateWidget(
-              header: AppStrings.errorEmptyHeader,
-              text: AppStrings.errorEmptyText,
+              header: AppLocalizations.of(context)!.errorEmptyHeader,
+              text: AppLocalizations.of(context)!.errorEmptyText,
             ),
           );
   }

@@ -1,0 +1,22 @@
+{
+  "appTitle": "Места",
+  "navPlacesLabel": "Места",
+  "navMapLabel": "Карта",
+  "navFavoritesLabel": "Избранное",
+  "navSettingsLabel": "Настройки",
+  "placesAppBarTitle": "Список\nинтересных мест",
+  "placesAppBarTitleSmall": "Интересные места",
+  "placesButtonAddNewPlace": "Новое место",
+  "placeTypeNameHotel": "Отель",
+  "placeTypeNameRestaurant": "Ресторан",
+  "placeTypeNameOther": "Особое место",
+  "placeTypeNamePark": "Парк",
+  "placeTypeNameMuseum": "Музей",
+  "placeTypeNameCafe": "Кафе",
+  "placeTypeNameTemple": "Храм",
+  "placeTypeNameMonument": "Памятник",
+  "error": "Ошибка",
+  "errorEmptyHeader": "Пусто",
+  "errorEmptyText": "Нет данных для отображения.",
+  "errorSomethingsWrong": "Что-то пошло не так.\nПопробуйте позже."
+}

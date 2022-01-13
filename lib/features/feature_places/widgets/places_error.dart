@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/assets/res/app_assets.dart';
-import 'package:places_elementary/assets/strings/app_strings.dart';
 import 'package:places_elementary/features/common/widgets/error/error_state_widget.dart';
 import 'package:places_elementary/features/feature_places/widgets/places_appbar.dart';
 
@@ -16,8 +16,8 @@ class PlacesError extends StatelessWidget {
       appBar: const PlacesAppBar(),
       body: ErrorStateWidget(
         icon: AppAssets.icNetworkException,
-        header: AppStrings.error,
-        text: AppStrings.errorSomethingsWrong,
+        header: AppLocalizations.of(context)!.error,
+        text: AppLocalizations.of(context)!.errorSomethingsWrong,
         onPressed: () {},
       ),
     );

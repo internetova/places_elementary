@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/assets/strings/places_strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/feature_places/constants/places_constants.dart';
 
@@ -26,7 +26,7 @@ class PlacesSliverAppBar extends StatelessWidget {
             duration: AppSizes.milliseconds300,
             opacity: verticalExtent == kToolbarHeight ? 1.0 : 0.0,
             child: Text(
-              PlacesStrings.appBarTitleSmall,
+              AppLocalizations.of(context)!.placesAppBarTitleSmall,
               style: Theme.of(context).textTheme.headline6!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -41,7 +41,7 @@ class PlacesSliverAppBar extends StatelessWidget {
                 Positioned(
                   bottom: 0,
                   child: Text(
-                    PlacesStrings.appBarTitle,
+                    AppLocalizations.of(context)!.placesAppBarTitle,
                     style: Theme.of(context).textTheme.headline3!.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

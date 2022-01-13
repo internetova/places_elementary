@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/assets/strings/places_strings.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/feature_places/constants/places_constants.dart';
 
@@ -25,7 +25,7 @@ class PlacesAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSizes.paddingStandard),
             child: Text(
-              PlacesStrings.appBarTitle,
+              AppLocalizations.of(context)!.placesAppBarTitleSmall,
               style: Theme.of(context).textTheme.headline3!.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),

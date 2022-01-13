@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/common/constants/app_default_values.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/placeholder/skeleton.dart';

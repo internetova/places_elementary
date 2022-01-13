@@ -1,0 +1,82 @@
+{
+  "appTitle": "Места",
+  "@appTitle": {
+    "description": "Название приложения"
+  },
+  "navPlacesLabel": "Места",
+  "@navPlacesLabel": {
+    "description": "Нижняя навигация, название таба"
+  },
+  "navMapLabel": "Карта",
+  "@navMapLabel": {
+    "description": "Нижняя навигация, название таба"
+  },
+  "navFavoritesLabel": "Избранное",
+  "@navFavoritesLabel": {
+    "description": "Нижняя навигация, название таба"
+  },
+  "navSettingsLabel": "Настройки",
+  "@navSettingsLabel": {
+    "description": "Нижняя навигация, название таба"
+  },
+  "placesAppBarTitle": "Список\nинтересных мест",
+  "@placesAppBarTitle": {
+    "description": "Большой AppBarTitle для PlacesScreen"
+  },
+  "placesAppBarTitleSmall": "Интересные места",
+  "@placesAppBarTitleSmall": {
+    "description": "Маленький AppBarTitle для PlacesScreen"
+  },
+  "placesButtonAddNewPlace": "Новое место",
+  "@placesButtonAddNewPlace": {
+    "description": "Название кнопки добавить новое место"
+  },
+  "placeTypeNameHotel": "Отель",
+  "@placeTypeNameHotel": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameRestaurant": "Ресторан",
+  "@placeTypeNameRestaurant": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameOther": "Особое место",
+  "@placeTypeNameOther": {
+    "description": "Название типа места"
+  },
+  "placeTypeNamePark": "Парк",
+  "@placeTypeNamePark": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameMuseum": "Музей",
+  "@placeTypeNameMuseum": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameCafe": "Кафе",
+  "@placeTypeNameCafe": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameTemple": "Храм",
+  "@placeTypeNameTemple": {
+    "description": "Название типа места"
+  },
+  "placeTypeNameMonument": "Памятник",
+  "@placeTypeNameMonument": {
+    "description": "Название типа места"
+  },
+  "error": "Ошибка",
+  "@error": {
+    "description": "Заголовок Ошибка"
+  },
+  "errorEmptyHeader": "Пусто",
+  "@errorEmptyHeader": {
+    "description": "Заголовок Пусто"
+  },
+  "errorEmptyText": "Нет данных для отображения.",
+  "@errorEmptyText": {
+    "description": "Текст для пустого стейта []"
+  },
+  "errorSomethingsWrong": "Что-то пошло не так.\nПопробуйте позже.",
+  "@errorSomethingsWrong": {
+    "description": "Текст для неконкретной ошибки"
+  }
+}

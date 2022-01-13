@@ -1,9 +1,5 @@
 /// Текстовые константы
 class PlacesStrings {
-  static const appBarTitle = 'Список\nинтересных мест';
-  static const appBarTitleSmall = 'Интересные места';
-  static const titleButtonAddNewCard = 'НОВОЕ МЕСТО';
-
   /// Названия категорий / типы мест в фильтре и в карточке
   static const placeTypeCodeHotel = 'hotel';
   static const placeTypeNameHotel = 'Отель';

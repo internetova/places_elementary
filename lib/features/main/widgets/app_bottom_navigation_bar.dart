@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places_elementary/assets/res/app_assets.dart';
+import 'package:places_elementary/assets/strings/app_strings.dart';
 
 /// BottomNavigationBar приложения
 class AppBottomNavigationBar extends StatelessWidget {
@@ -25,28 +25,28 @@ class AppBottomNavigationBar extends StatelessWidget {
             current == 0 ? AppAssets.icListFull : AppAssets.icList,
             color: _itemColor(context, current == 0),
           ),
-          label: AppLocalizations.of(context)!.navPlacesLabel,
+          label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             current == 1 ? AppAssets.icMapFull : AppAssets.icMap,
             color: _itemColor(context, current == 1),
           ),
-          label: AppLocalizations.of(context)!.navMapLabel,
+          label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             current == 2 ? AppAssets.icHeartFull : AppAssets.icHeart,
             color: _itemColor(context, current == 2),
           ),
-          label: AppLocalizations.of(context)!.navFavoritesLabel,
+          label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             current == 3 ? AppAssets.icSettingsFull : AppAssets.icSettings,
             color: _itemColor(context, current == 3),
           ),
-          label: AppLocalizations.of(context)!.navSettingsLabel,
+          label: AppStrings.emptyString,
         ),
       ],
     );

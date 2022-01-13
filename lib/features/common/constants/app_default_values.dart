@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/features/feature_places/domain/entity/object_position.dart';
+import 'package:places_elementary/features/places/domain/entity/object_position.dart';
 
 /// Дефолтные значения
 class AppDefaultValues {

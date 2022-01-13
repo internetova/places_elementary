@@ -6,7 +6,8 @@ import 'package:places_elementary/features/places/service/places_service.dart';
 class PlacesScreenModel extends ElementaryModel {
   final PlacesService placesService;
 
-  PlacesScreenModel(this.placesService);
+  PlacesScreenModel(ErrorHandler errorHandler, this.placesService)
+      : super(errorHandler: errorHandler);
 
   /// Получить все места
   Future<List<Place>> getAllPlaces() => placesService.getAllPlaces();

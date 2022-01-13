@@ -14,7 +14,7 @@ abstract class IPlacesScreenWidgetModel extends IWidgetModel {
 
 PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext context) {
   final appDependencies = context.read<IAppScope>();
-  final model = PlacesScreenModel(appDependencies.placesService);
+  final model = PlacesScreenModel(appDependencies.errorHandler, appDependencies.placesService);
 
   return PlacesScreenWidgetModel(model);
 }

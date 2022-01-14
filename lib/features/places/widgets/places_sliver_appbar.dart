@@ -5,9 +5,12 @@ import 'package:places_elementary/features/places/constants/places_constants.dar
 
 /// Sliver appBar для PlacesScreen
 /// Используем когда есть данные для отображения
+/// [goTop] - перейти к началу экрана если прокрутка смещена
 class PlacesSliverAppBar extends StatelessWidget {
+  final VoidCallback goTop;
+
   const PlacesSliverAppBar({
-    Key? key,
+    Key? key, required this.goTop,
   }) : super(key: key);
 
   @override
@@ -24,13 +27,16 @@ class PlacesSliverAppBar extends StatelessWidget {
           centerTitle: true,
           title: AnimatedOpacity(
             duration: AppSizes.milliseconds300,
-            opacity: verticalExtent == kToolbarHeight ? 1.0 : 0.0,
-            child: Text(
-              AppLocalizations.of(context)!.placesAppBarTitleSmall,
-              style: Theme.of(context).textTheme.headline6!.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-              textAlign: TextAlign.center,
+            opacity: verticalExtent == 83 ? 1.0 : 0.0,
+            child: GestureDetector(
+              onTap: goTop,
+              child: Text(
+                AppLocalizations.of(context)!.placesAppBarTitleSmall,
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           background: Container(

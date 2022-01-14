@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_default_values.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/placeholder/skeleton.dart';
-import 'package:places_elementary/features/places/widgets/places_appbar.dart';
 
 /// Виджет списка мест для состояния загрузки
 class PlacesLoader extends StatelessWidget {
@@ -15,9 +14,7 @@ class PlacesLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const PlacesAppBar(),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.fromLTRB(
           AppSizes.paddingStandard,
           AppSizes.paddingStandard * 2,
@@ -30,7 +27,6 @@ class PlacesLoader extends StatelessWidget {
             (index) => _Card(isLoading: isLoading),
           ),
         ),
-      ),
     );
   }
 }

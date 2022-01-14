@@ -9,7 +9,11 @@ import 'package:provider/provider.dart';
 abstract class IPlacesScreenWidgetModel extends IWidgetModel {
   ListenableState<EntityState<List<Place>>> get placesState;
 
+  ScrollController get scrollController;
+
   Future<void> refreshPlaces();
+
+  void goTop();
 }
 
 PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext context) {
@@ -24,8 +28,13 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
     implements IPlacesScreenWidgetModel {
   late final _placesState = EntityStateNotifier<List<Place>>();
 
+  final _scrollController = ScrollController();
+
   @override
   ListenableState<EntityState<List<Place>>> get placesState => _placesState;
+
+  @override
+  ScrollController get scrollController => _scrollController;
 
   PlacesScreenWidgetModel(PlacesScreenModel model) : super(model);
 
@@ -36,9 +45,20 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
     _init();
   }
 
+  @override
+  void dispose() {
+    scrollController.dispose();
+
+    super.dispose();
+  }
+
   /// Повторный запрос данных
   @override
   Future<void> refreshPlaces() async => _init();
+
+  /// Перейти наверх
+  @override
+  void goTop() => _scrollController.jumpTo(0);
 
   Future<void> _init() async {
     _placesState.loading();

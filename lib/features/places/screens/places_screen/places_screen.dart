@@ -6,6 +6,7 @@ import 'package:places_elementary/features/places/widgets/places_builder.dart';
 import 'package:places_elementary/features/places/widgets/places_error.dart';
 import 'package:places_elementary/features/places/widgets/places_loader.dart';
 import 'package:places_elementary/features/places/widgets/places_sliver_appbar.dart';
+import 'package:surf_util/surf_util.dart';
 
 /// Экран PlacesScreen
 class PlacesScreen extends ElementaryWidget<IPlacesScreenWidgetModel> {
@@ -17,27 +18,29 @@ class PlacesScreen extends ElementaryWidget<IPlacesScreenWidgetModel> {
   @override
   Widget build(IPlacesScreenWidgetModel wm) {
     return Scaffold(
-      body: NestedScrollView(
-        controller: wm.scrollController,
-        headerSliverBuilder: (_, innerBoxScrolled) => [
-          PlacesSliverAppBar(
-            goTop: wm.goTop,
+      body: DisableOverscroll(
+        child: NestedScrollView(
+          controller: wm.scrollController,
+          headerSliverBuilder: (_, innerBoxScrolled) => [
+            PlacesSliverAppBar(
+              goTop: wm.goTop,
+            ),
+          ],
+          body: EntityStateNotifierBuilder<List<Place>>(
+            listenableEntityState: wm.placesState,
+            loadingBuilder: (_, __) {
+              return const PlacesLoader();
+            },
+            errorBuilder: (_, __, ___) {
+              return const PlacesError();
+            },
+            builder: (_, data) {
+              return PlacesBuilder(
+                data: data ?? [],
+                refreshPlaces: wm.refreshPlaces,
+              );
+            },
           ),
-        ],
-        body: EntityStateNotifierBuilder<List<Place>>(
-          listenableEntityState: wm.placesState,
-          loadingBuilder: (_, __) {
-            return const PlacesLoader();
-          },
-          errorBuilder: (_, __, ___) {
-            return const PlacesError();
-          },
-          builder: (_, data) {
-            return PlacesBuilder(
-              data: data ?? [],
-              refreshPlaces: wm.refreshPlaces,
-            );
-          },
         ),
       ),
     );

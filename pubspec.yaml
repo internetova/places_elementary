@@ -19,6 +19,7 @@ dependencies:
   retrofit: ^3.0.0
   shimmer: ^2.0.0
   surf_logger: ^1.0.1
+  surf_util: ^1.0.3
 
 dev_dependencies:
   build_runner: ^2.1.5

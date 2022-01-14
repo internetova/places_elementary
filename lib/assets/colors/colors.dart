@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//ignore_for_file: public_member_api_docs
 /// Цвета приложения
 /// У темной и светлой темы в некоторых случаях будут общие цвета, поэтому определение цветов
 /// сделала публичным

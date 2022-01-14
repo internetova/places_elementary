@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
-import 'package:places_elementary/features/places/widgets/places_list.dart';
-import 'package:places_elementary/features/places/widgets/places_sliver_appbar.dart';
+import 'package:places_elementary/features/places/widgets/place_card.dart';
 
 typedef FutureVoidCallback = Future<void> Function();
 
@@ -19,15 +19,19 @@ class PlacesBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: refreshPlaces,
-      child: Scaffold(
-        body: SafeArea(
-          child: CustomScrollView(
-            slivers: [
-              const PlacesSliverAppBar(),
-              PlacesList(data: data),
-            ],
+      child: ListView.builder(
+        itemBuilder: (_, index) => Padding(
+          padding: EdgeInsets.fromLTRB(
+            AppSizes.paddingStandard,
+            index == 0 ? AppSizes.paddingStandard * 2 : 0,
+            AppSizes.paddingStandard,
+            AppSizes.paddingStandard,
+          ),
+          child: PlaceCard(
+            card: data[index],
           ),
         ),
+        itemCount: data.length,
       ),
     );
   }

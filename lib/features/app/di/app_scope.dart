@@ -6,9 +6,11 @@ import 'package:elementary/elementary.dart';
 import 'package:places_elementary/api/service/places_api.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/domain/repository/places_repository.dart';
 import 'package:places_elementary/features/places/service/places_service.dart';
+import 'package:places_elementary/features/settings/service/settings_service.dart';
 import 'package:places_elementary/util/default_error_handler.dart';
 
 /// Scope of dependencies which need through all app's life.
@@ -17,11 +19,15 @@ class AppScope implements IAppScope {
   late final ErrorHandler _errorHandler;
   late final VoidCallback _applicationRebuilder;
   late final Coordinator _coordinator;
+  late final SharedPrefsStorage _prefsStorage;
 
-  // Места
+  /// Места
   late final PlacesApi _placesApi;
   late final PlacesRepository _placesRepository;
   late final PlacesService _placesService;
+
+  /// Настройки
+  late final SettingsService _settingsService;
 
   @override
   Dio get dio => _dio;
@@ -38,6 +44,9 @@ class AppScope implements IAppScope {
   @override
   PlacesService get placesService => _placesService;
 
+  @override
+  SettingsService get settingsService => _settingsService;
+
   /// Create an instance [AppScope].
   AppScope({
     required VoidCallback applicationRebuilder,
@@ -48,8 +57,10 @@ class AppScope implements IAppScope {
     _dio = _initDio(additionalInterceptors);
     _errorHandler = DefaultErrorHandler();
     _coordinator = Coordinator();
+    _prefsStorage = SharedPrefsStorage();
 
     _placesService = _initPlacesService(_dio);
+    _settingsService = _initSettingsService(_prefsStorage);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -63,8 +74,7 @@ class AppScope implements IAppScope {
       ..receiveTimeout = timeout.inMilliseconds
       ..sendTimeout = timeout.inMilliseconds;
 
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate = (client) {
       final proxyUrl = Environment<AppConfig>.instance().config.proxyUrl;
       if (proxyUrl != null && proxyUrl.isNotEmpty) {
         client
@@ -80,8 +90,7 @@ class AppScope implements IAppScope {
     dio.interceptors.addAll(additionalInterceptors);
 
     if (Environment<AppConfig>.instance().isDebug) {
-      dio.interceptors
-          .add(LogInterceptor(requestBody: true, responseBody: true));
+      dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
     }
 
     return dio;
@@ -93,6 +102,11 @@ class AppScope implements IAppScope {
     _placesRepository = PlacesRepository(_placesApi);
 
     return PlacesService(_placesRepository);
+  }
+
+  /// Работа с настройками
+  SettingsService _initSettingsService(SharedPrefsStorage storage) {
+    return SettingsService(storage);
   }
 }
 
@@ -112,4 +126,7 @@ abstract class IAppScope {
 
   /// Сервис для работы с местами
   PlacesService get placesService;
+
+  /// Сервис для работы с настройками
+  SettingsService get settingsService;
 }

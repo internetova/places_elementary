@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/settings/widgets/onboarding/setting_onboarding_widget.dart';
+import 'package:places_elementary/features/settings/widgets/theme_switch/theme_switch_widget.dart';
 
 /// Экран с настройками
 class SettingsScreen extends StatelessWidget {
@@ -21,8 +22,10 @@ class SettingsScreen extends StatelessWidget {
           vertical: 24,
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: const [
+            ThemeSwitchWidget(),
             Divider(),
             SettingOnboardingWidget(),
             Divider(),

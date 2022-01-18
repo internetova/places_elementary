@@ -1,3 +1,4 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,6 +7,7 @@ import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/debug_options.dart';
 import 'package:places_elementary/config/environment/environment.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
+import 'package:places_elementary/features/common/domain/entity/app_settings.dart';
 import 'package:places_elementary/features/common/widgets/di_scope/di_scope.dart';
 import 'package:places_elementary/features/navigation/domain/delegate/app_router_delegate.dart';
 import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
@@ -40,27 +42,30 @@ class _AppState extends State<App> {
       factory: () {
         return _scope;
       },
-      child: MaterialApp.router(
-        /// Localization.
-        locale: _localizations.first,
-        localizationsDelegates: _localizationsDelegates,
-        supportedLocales: _localizations,
+      child: EntityStateNotifierBuilder<AppSettings>(
+        listenableEntityState: _scope.appSettingsService.appState,
+        builder: (_, data) => MaterialApp.router(
+          /// Localization.
+          locale: _localizations.first,
+          localizationsDelegates: _localizationsDelegates,
+          supportedLocales: _localizations,
 
-        /// Debug configuration.
-        showPerformanceOverlay: _getDebugConfig().showPerformanceOverlay,
-        debugShowMaterialGrid: _getDebugConfig().debugShowMaterialGrid,
-        checkerboardRasterCacheImages: _getDebugConfig().checkerboardRasterCacheImages,
-        checkerboardOffscreenLayers: _getDebugConfig().checkerboardOffscreenLayers,
-        showSemanticsDebugger: _getDebugConfig().showSemanticsDebugger,
-        debugShowCheckedModeBanner: _getDebugConfig().debugShowCheckedModeBanner,
+          /// Debug configuration.
+          showPerformanceOverlay: _getDebugConfig().showPerformanceOverlay,
+          debugShowMaterialGrid: _getDebugConfig().debugShowMaterialGrid,
+          checkerboardRasterCacheImages: _getDebugConfig().checkerboardRasterCacheImages,
+          checkerboardOffscreenLayers: _getDebugConfig().checkerboardOffscreenLayers,
+          showSemanticsDebugger: _getDebugConfig().showSemanticsDebugger,
+          debugShowCheckedModeBanner: _getDebugConfig().debugShowCheckedModeBanner,
 
-        /// This is for navigation.
-        routeInformationParser: AppRouteInformationParser(),
-        routerDelegate: AppRouterDelegate(_scope.coordinator),
+          /// This is for navigation.
+          routeInformationParser: AppRouteInformationParser(),
+          routerDelegate: AppRouterDelegate(_scope.coordinator),
 
-        /// Тема приложения
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
+          /// Тема приложения
+          theme: data!.themeIsDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+        ),
+        loadingBuilder: (_, __) => const SizedBox.shrink(),
       ),
     );
   }

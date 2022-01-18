@@ -15,7 +15,10 @@ abstract class IMainScreenWidgetModel extends IWidgetModel {
 /// Фабрика для создания виджет модели
 MainScreenWidgetModel defaultMainScreenWidgetModelFactory(BuildContext context) {
   final appDependencies = context.read<IAppScope>();
-  final model = MainScreenModel(appDependencies.errorHandler);
+  final model = MainScreenModel(
+    appDependencies.errorHandler,
+    appDependencies.appSettingsService,
+  );
 
   return MainScreenWidgetModel(model);
 }
@@ -23,7 +26,7 @@ MainScreenWidgetModel defaultMainScreenWidgetModelFactory(BuildContext context) 
 /// Виджет модель для MainScreen
 class MainScreenWidgetModel extends WidgetModel<MainScreen, MainScreenModel>
     implements IMainScreenWidgetModel {
-  final _tabState = StateNotifier<int>(initValue: 0);
+  final _tabState = StateNotifier<int>();
 
   @override
   ListenableState<int> get tabState => _tabState;
@@ -31,5 +34,20 @@ class MainScreenWidgetModel extends WidgetModel<MainScreen, MainScreenModel>
   MainScreenWidgetModel(MainScreenModel model) : super(model);
 
   @override
-  void switchTab(int tabIndex) => _tabState.accept(tabIndex);
+  void initWidgetModel() {
+    super.initWidgetModel();
+
+    _init();
+  }
+
+  @override
+  void switchTab(int tabIndex) {
+    _tabState.accept(tabIndex);
+    model.setMainTab(tabIndex);
+  }
+
+  void _init() {
+    final currentTab = model.initData()?.mainTab;
+    _tabState.accept(currentTab);
+  }
 }

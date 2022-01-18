@@ -37,6 +37,20 @@ class SharedPrefsStorage {
     return _prefs?.getBool(AppStrings.keyOnboardingIsComplete) ?? false;
   }
 
+  /// Текущий MainTab нижней навигации
+  /// Получаем
+  Future<int> getMainTab() async {
+    await _initPrefs();
+
+    return _prefs?.getInt(AppStrings.keyMainTab) ?? 0;
+  }
+
+  /// Сохраняем
+  Future<void> setMainTab(int currentTab) async {
+    await _initPrefs();
+    await _prefs?.setInt(AppStrings.keyMainTab, currentTab);
+  }
+
   /// Фильтр сохраняем
   Future<void> setSearchFilter(SearchFilter filter) async {
     await _initPrefs();

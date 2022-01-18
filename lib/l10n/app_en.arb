@@ -31,6 +31,18 @@
   "@placesButtonAddNewPlace": {
     "description": "Название кнопки добавить новое место"
   },
+  "settingsAppBarTitle": "Настройки",
+  "@settingsAppBarTitle": {
+    "description": "AppBarTitle для SettingsScreen"
+  },
+  "settingThemeDarkTitle": "Тёмная тема",
+  "@settingThemeDarkTitle": {
+    "description": "Настройка темы в SettingsScreen"
+  },
+  "settingOnboardingTitle": "Смотреть туториал",
+  "@settingOnboardingTitle": {
+    "description": "Пройти онбординг в SettingsScreen"
+  },
   "placeTypeNameHotel": "Отель",
   "@placeTypeNameHotel": {
     "description": "Название типа места"

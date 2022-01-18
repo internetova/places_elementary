@@ -26,7 +26,7 @@ ThemeSwitchWidgetModel defaultThemeSwitchWidgetModelFactory(BuildContext context
   final appDependencies = context.read<IAppScope>();
   final model = ThemeSwitchModel(
     appDependencies.errorHandler,
-    appDependencies.settingsService,
+    appDependencies.appSettingsService,
   );
 
   return ThemeSwitchWidgetModel(model);
@@ -61,14 +61,15 @@ class ThemeSwitchWidgetModel extends WidgetModel<ThemeSwitchWidget, ThemeSwitchM
     _init();
   }
 
+  /// Переключить тему
   @override
   void switchTheme(bool isDark) {
-    model.setThemeIsDark(isDark: isDark);
     _themeIsDarkState.accept(isDark);
+    model.setThemeIsDark(isDark: isDark);
   }
 
-  Future<void> _init() async {
-    final isDark = await model.themeIsDark();
+  void _init() {
+    final isDark = model.initData()?.themeIsDark;
     _themeIsDarkState.accept(isDark);
   }
 }

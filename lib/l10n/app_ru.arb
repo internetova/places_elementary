@@ -10,6 +10,8 @@
   "settingsAppBarTitle": "Настройки",
   "settingThemeDarkTitle": "Тёмная тема",
   "settingOnboardingTitle": "Смотреть туториал",
+  "onboardingButtonTitleSkip": "Пропустить",
+  "onboardingButtonTitleStart": "На старт",
   "placeTypeNameHotel": "Отель",
   "placeTypeNameRestaurant": "Ресторан",
   "placeTypeNameOther": "Особое место",

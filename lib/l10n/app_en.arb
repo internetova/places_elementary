@@ -43,6 +43,14 @@
   "@settingOnboardingTitle": {
     "description": "Пройти онбординг в SettingsScreen"
   },
+  "onboardingButtonTitleSkip": "Пропустить",
+  "@onboardingButtonTitleSkip": {
+    "description": "Кнопка в онбординге Пропустить"
+  },
+  "onboardingButtonTitleStart": "На старт",
+  "@onboardingButtonTitleStart": {
+    "description": "Кнопка в онбординге На старт"
+  },
   "placeTypeNameHotel": "Отель",
   "@placeTypeNameHotel": {
     "description": "Название типа места"

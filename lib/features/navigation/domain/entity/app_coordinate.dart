@@ -3,6 +3,7 @@ import 'package:places_elementary/features/favorites/screens/favorites_screen.da
 import 'package:places_elementary/features/main/screens/main_screen/main_screen.dart';
 import 'package:places_elementary/features/map/screens/map_screen.dart';
 import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
+import 'package:places_elementary/features/onboarding/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:places_elementary/features/places/screens/places_screen/places_screen.dart';
 import 'package:places_elementary/features/settings/screens/settings_screen.dart';
 import 'package:places_elementary/features/temp/screens/temp_screen/temp_screen.dart';
@@ -30,6 +31,9 @@ class AppCoordinate implements Coordinate {
   /// Настройки ([SettingsScreen]).
   static const settingsScreen = AppCoordinate._('settings_screen');
 
+  /// Онбординг ([OnboardingScreen]).
+  static const onboardingScreen = AppCoordinate._('onboarding_screen');
+
   /// Initialization screens(it can be any screens).
   static const initial = initScreen;
 
@@ -50,4 +54,5 @@ final Map<AppCoordinate, CoordinateBuilder> appCoordinates = {
   AppCoordinate.mapScreen: (_, __) => const MapScreen(),
   AppCoordinate.favoritesScreen: (_, __) => const FavoritesScreen(),
   AppCoordinate.settingsScreen: (_, __) => const SettingsScreen(),
+  AppCoordinate.onboardingScreen: (_, __) => const OnboardingScreen(),
 };

@@ -53,9 +53,8 @@ class SettingOnboardingWidgetModel
   ) : super(model);
 
   /// Перейти на онбординг
-  // TODO(sugina): заменить на правильный адрес после реализации экрана
   @override
   void goOnboardingScreen() {
-    coordinator.navigate(context, AppCoordinate.favoritesScreen);
+    coordinator.navigate(context, AppCoordinate.onboardingScreen);
   }
 }

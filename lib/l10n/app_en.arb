@@ -43,6 +43,38 @@
   "@settingOnboardingTitle": {
     "description": "Пройти онбординг в SettingsScreen"
   },
+  "onboardingButtonTitleSkip": "Пропустить",
+  "@onboardingButtonTitleSkip": {
+    "description": "Кнопка в онбординге Пропустить"
+  },
+  "onboardingButtonTitleStart": "На старт",
+  "@onboardingButtonTitleStart": {
+    "description": "Кнопка в онбординге На старт"
+  },
+  "onboardingItemOneTitle": "Добро пожаловать\nв Путеводитель",
+  "@onboardingItemOneTitle": {
+    "description": "Заголовок для слайда 1 онбординга"
+  },
+  "onboardingItemOneText": "Ищи новые локации и сохраняй\nсамые любимые.",
+  "@onboardingItemOneText": {
+    "description": "Текст для слайда 1 онбординга"
+  },
+  "onboardingItemTwoTitle": "Построй маршрут\nи отправляйся в путь",
+  "@onboardingItemTwoTitle": {
+    "description": "Заголовок для слайда 2 онбординга"
+  },
+  "onboardingItemTwoText": "Достигай цели максимально\nбыстро и комфортно.",
+  "@onboardingItemTwoText": {
+    "description": "Текст для слайда 2 онбординга"
+  },
+  "onboardingItemThreeTitle": "Добавляй места,\nкоторые нашёл сам",
+  "@onboardingItemThreeTitle": {
+    "description": "Заголовок для слайда 3 онбординга"
+  },
+  "onboardingItemThreeText": "Делись самыми интересными\nи помоги нам стать лучше!",
+  "@onboardingItemThreeText": {
+    "description": "Текст для слайда 3 онбординга"
+  },
   "placeTypeNameHotel": "Отель",
   "@placeTypeNameHotel": {
     "description": "Название типа места"

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/onboarding/domain/entity/onboarding_item.dart';
 import 'package:places_elementary/features/onboarding/widgets/onboarding_page/onboarding_page_widget.dart';
 import 'package:places_elementary/features/onboarding/widgets/page_indicator.dart';
@@ -23,6 +24,9 @@ class OnboardingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final phoneSize = MediaQuery.of(context).size;
+    final indicatorPosition = (phoneSize.height - AppSizes.toolbarHeightStandard) / 4;
+
     return DisableOverscroll(
       child: Stack(
         children: [
@@ -33,7 +37,7 @@ class OnboardingBody extends StatelessWidget {
             itemBuilder: (_, index) => OnboardingPageWidget(itemData: data[index]),
           ),
           Positioned.fill(
-            bottom: 100,
+            bottom: indicatorPosition,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: PageIndicator(

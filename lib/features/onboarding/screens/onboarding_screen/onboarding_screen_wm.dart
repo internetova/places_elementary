@@ -106,7 +106,7 @@ class OnboardingScreenWidgetModel extends WidgetModel<OnboardingScreen, Onboardi
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInBack,
+        curve: Curves.easeOut,
       ),
     );
 

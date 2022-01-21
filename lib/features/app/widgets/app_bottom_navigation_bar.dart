@@ -4,7 +4,7 @@ import 'package:places_elementary/assets/res/app_assets.dart';
 import 'package:places_elementary/assets/strings/app_strings.dart';
 
 /// BottomNavigationBar приложения
-class AppBottomNavigationBar extends StatelessWidget {
+class AppBottomNavigationBar extends StatefulWidget {
   final int current;
   final ValueChanged<int> switchTab;
 
@@ -15,36 +15,41 @@ class AppBottomNavigationBar extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AppBottomNavigationBar> createState() => _AppBottomNavigationBarState();
+}
+
+class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: current,
-      onTap: switchTab,
+      currentIndex: widget.current,
+      onTap: widget.switchTab,
       items: [
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            current == 0 ? AppAssets.icListFull : AppAssets.icList,
-            color: _itemColor(context, current == 0),
+            widget.current == 0 ? AppAssets.icListFull : AppAssets.icList,
+            color: _itemColor(widget.current == 0),
           ),
           label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            current == 1 ? AppAssets.icMapFull : AppAssets.icMap,
-            color: _itemColor(context, current == 1),
+            widget.current == 1 ? AppAssets.icMapFull : AppAssets.icMap,
+            color: _itemColor(widget.current == 1),
           ),
           label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            current == 2 ? AppAssets.icHeartFull : AppAssets.icHeart,
-            color: _itemColor(context, current == 2),
+            widget.current == 2 ? AppAssets.icHeartFull : AppAssets.icHeart,
+            color: _itemColor(widget.current == 2),
           ),
           label: AppStrings.emptyString,
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
-            current == 3 ? AppAssets.icSettingsFull : AppAssets.icSettings,
-            color: _itemColor(context, current == 3),
+            widget.current == 3 ? AppAssets.icSettingsFull : AppAssets.icSettings,
+            color: _itemColor(widget.current == 3),
           ),
           label: AppStrings.emptyString,
         ),
@@ -53,7 +58,7 @@ class AppBottomNavigationBar extends StatelessWidget {
   }
 
   /// Берём цвет айтема из темы
-  Color? _itemColor(BuildContext context, bool current) {
+  Color? _itemColor(bool current) {
     return current
         ? Theme.of(context).bottomNavigationBarTheme.selectedItemColor
         : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor;

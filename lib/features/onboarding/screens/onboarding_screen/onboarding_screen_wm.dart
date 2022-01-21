@@ -2,9 +2,9 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/assets/res/app_assets.dart';
+import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
-import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/onboarding/domain/entity/onboarding_item.dart';
 import 'package:places_elementary/features/onboarding/screens/onboarding_screen/onboarding_screen.dart';
@@ -26,7 +26,7 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
 
   void switchPage(int pageIndex);
 
-  void goMainScreen();
+  void goTabsScreen();
 }
 
 /// Фабрика для создания виджет модели
@@ -135,8 +135,12 @@ class OnboardingScreenWidgetModel extends WidgetModel<OnboardingScreen, Onboardi
   }
 
   @override
-  void goMainScreen() {
-    coordinator.navigate(context, AppCoordinate.mainScreen);
+  void goTabsScreen() {
+    coordinator.navigate(
+      context,
+      AppCoordinate.tabsScreen,
+      replaceRootCoordinate: true,
+    );
   }
 
   /// Запуск анимации кнопок

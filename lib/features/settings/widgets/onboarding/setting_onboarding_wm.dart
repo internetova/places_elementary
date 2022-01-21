@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
-import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/onboarding/onboarding_coordinate.dart';
 import 'package:places_elementary/features/settings/widgets/onboarding/setting_onboarding_model.dart';
 import 'package:places_elementary/features/settings/widgets/onboarding/setting_onboarding_widget.dart';
 import 'package:provider/provider.dart';
@@ -55,6 +55,10 @@ class SettingOnboardingWidgetModel
   /// Перейти на онбординг
   @override
   void goOnboardingScreen() {
-    coordinator.navigate(context, AppCoordinate.onboardingScreen);
+    coordinator.navigate(
+      context,
+      OnboardingCoordinate.onboardingScreen,
+      replaceRootCoordinate: true,
+    );
   }
 }

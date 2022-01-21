@@ -6,13 +6,13 @@ import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/debug_options.dart';
 import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
-import 'package:places_elementary/features/common/domain/entity/app_settings.dart';
 import 'package:places_elementary/features/common/widgets/di_scope/di_scope.dart';
 import 'package:places_elementary/features/navigation/domain/delegate/app_router_delegate.dart';
-import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
 import 'package:places_elementary/features/navigation/domain/parser/app_route_information_parses.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/onboarding/onboarding_coordinate.dart';
 
 /// App widget.
 class App extends StatefulWidget {
@@ -42,8 +42,8 @@ class _AppState extends State<App> {
       factory: () {
         return _scope;
       },
-      child: EntityStateNotifierBuilder<AppSettings>(
-        listenableEntityState: _scope.appSettingsService.appState,
+      child: EntityStateNotifierBuilder<bool>(
+        listenableEntityState: _scope.settingsService.themeIsDarkState,
         builder: (_, data) => MaterialApp.router(
           /// Localization.
           locale: _localizations.first,
@@ -63,7 +63,7 @@ class _AppState extends State<App> {
           routerDelegate: AppRouterDelegate(_scope.coordinator),
 
           /// Тема приложения
-          theme: data!.themeIsDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+          theme: data! ? AppTheme.darkTheme : AppTheme.lightTheme,
         ),
         loadingBuilder: (_, __) => const SizedBox.shrink(),
       ),
@@ -77,7 +77,8 @@ class _AppState extends State<App> {
   void _setupRouting(Coordinator coordinator) {
     coordinator
       ..initialCoordinate = AppCoordinate.initial
-      ..registerCoordinates('/', appCoordinates);
+      ..registerCoordinates('/', appCoordinates)
+      ..registerCoordinates('/onboarding', onboardingCoordinates);
   }
 
   void _rebuildApplication() {

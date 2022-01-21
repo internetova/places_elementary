@@ -1,22 +1,21 @@
 import 'package:elementary/elementary.dart';
-import 'package:places_elementary/features/common/domain/entity/app_settings.dart';
-import 'package:places_elementary/features/common/service/app_settings_service.dart';
+import 'package:places_elementary/features/settings/service/settings_service.dart';
 
 /// Модель для ThemeSwitchWidgetModel
 class ThemeSwitchModel extends ElementaryModel {
-  final AppSettingsService _appSettingsService;
+  final SettingsService _settingsService;
 
   ThemeSwitchModel(
     ErrorHandler errorHandler,
-    this._appSettingsService,
+    this._settingsService,
   ) : super(errorHandler: errorHandler);
 
-  AppSettings? initData() {
-    return _appSettingsService.appState.value?.data;
+  bool? initData() {
+    return _settingsService.themeIsDarkState.value?.data;
   }
 
   /// Тема сохраняем
   Future<void> setThemeIsDark({required bool isDark}) async {
-    await _appSettingsService.setThemeIsDark(isDark: isDark);
+    await _settingsService.setThemeIsDark(isDark: isDark);
   }
 }

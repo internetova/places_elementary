@@ -26,7 +26,7 @@ ThemeSwitchWidgetModel defaultThemeSwitchWidgetModelFactory(BuildContext context
   final appDependencies = context.read<IAppScope>();
   final model = ThemeSwitchModel(
     appDependencies.errorHandler,
-    appDependencies.appSettingsService,
+    appDependencies.settingsService,
   );
 
   return ThemeSwitchWidgetModel(model);
@@ -69,7 +69,7 @@ class ThemeSwitchWidgetModel extends WidgetModel<ThemeSwitchWidget, ThemeSwitchM
   }
 
   void _init() {
-    final isDark = model.initData()?.themeIsDark;
+    final isDark = model.initData();
     _themeIsDarkState.accept(isDark);
   }
 }

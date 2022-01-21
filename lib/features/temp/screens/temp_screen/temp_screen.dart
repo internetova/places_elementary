@@ -23,13 +23,8 @@ class TempScreen extends ElementaryWidget<TempScreenWidgetModel> {
               const Text('Тут будет SplashScreen'),
               const SizedBox(height: 60),
               TextButton(
-                onPressed: wm.goPlaceScreen,
-                child: const Text('go PlacesScreen'),
-              ),
-              const SizedBox(height: 10),
-              TextButton(
-                onPressed: wm.goMainScreen,
-                child: const Text('go MainScreen'),
+                onPressed: wm.goTabScreen,
+                child: const Text('go TabScreen'),
               ),
             ],
           ),

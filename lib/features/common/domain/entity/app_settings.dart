@@ -3,6 +3,7 @@ import 'package:places_elementary/features/places/domain/entity/search_filter.da
 
 part 'app_settings.freezed.dart';
 
+// TODO(sugina): удалить когда разнесу на части (иначе лишний раз ребилдится)
 /// Настройки приложения:
 /// - тема
 /// - пройден ли онбординг

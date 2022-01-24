@@ -26,13 +26,18 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
 
   void switchPage(int pageIndex);
 
-  void goTabsScreen();
+  void skipOnboarding();
+
+  void startApp();
 }
 
 /// Фабрика для создания виджет модели
 OnboardingScreenWidgetModel defaultOnboardingScreenWidgetModelFactory(BuildContext context) {
   final appDependencies = context.read<IAppScope>();
-  final model = OnboardingScreenModel(appDependencies.errorHandler);
+  final model = OnboardingScreenModel(
+    appDependencies.errorHandler,
+    appDependencies.appSettingsService,
+  );
   final coordinator = appDependencies.coordinator;
 
   return OnboardingScreenWidgetModel(model, coordinator);
@@ -135,6 +140,22 @@ class OnboardingScreenWidgetModel extends WidgetModel<OnboardingScreen, Onboardi
   }
 
   @override
+  void skipOnboarding() {
+    goTabsScreen();
+  }
+
+  @override
+  void startApp() {
+    /// Если онбординг еще не проходили, то поставим флаг о прохождении
+    final isComplete = model.onboardingIsComplete();
+
+    if (!isComplete) {
+      model.setOnboardingIsComplete(isComplete: true);
+    }
+
+    goTabsScreen();
+  }
+
   void goTabsScreen() {
     coordinator.navigate(
       context,

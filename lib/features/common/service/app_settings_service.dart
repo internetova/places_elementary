@@ -1,53 +1,51 @@
 import 'package:elementary/elementary.dart';
-import 'package:places_elementary/features/common/domain/entity/app_settings.dart';
 import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
 import 'package:places_elementary/features/places/domain/entity/search_filter.dart';
 
-// TODO(sugina): разнести по отдельным сервисам
 /// Настройки приложения:
 /// - статус прохождения онбординга
 /// - тема приложения
 /// - настройки фильтра для отображения мест
 /// - текущий таб в нижней навигации
 class AppSettingsService {
-  final appState = EntityStateNotifier<AppSettings>();
+  final themeIsDarkState = EntityStateNotifier<bool>();
+  final onboardingIsCompleteState = EntityStateNotifier<bool>();
+  final searchFilterState = EntityStateNotifier<SearchFilter>();
+  final tabsState = EntityStateNotifier<int>();
+
   final SharedPrefsStorage _prefsStorage;
-  late AppSettings _appSettings;
 
   AppSettingsService(this._prefsStorage) {
     init();
   }
 
   Future<void> init() async {
-    appState.loading();
+    themeIsDarkState.loading();
+    final isDark = await _prefsStorage.themeIsDark();
+    themeIsDarkState.content(isDark);
 
-    final themeIsDark = await _prefsStorage.themeIsDark();
-    final onboardingIsComplete = await _prefsStorage.onboardingIsComplete();
+    onboardingIsCompleteState.loading();
+    final isComplete = await _prefsStorage.onboardingIsComplete();
+    onboardingIsCompleteState.content(isComplete);
+
+    searchFilterState.loading();
     final searchFilter = await _prefsStorage.getSearchFilter();
+    searchFilterState.content(searchFilter);
+
+    tabsState.loading();
     final mainTab = await _prefsStorage.getMainTab();
-
-    _appSettings = AppSettings(
-      themeIsDark: themeIsDark,
-      onboardingIsComplete: onboardingIsComplete,
-      searchFilter: searchFilter,
-      mainTab: mainTab,
-    );
-
-    appState.content(_appSettings);
+    tabsState.content(mainTab);
   }
 
   /// Тема получаем
   Future<void> themeIsDark() async {
     final isDark = await _prefsStorage.themeIsDark();
-    _appSettings = _appSettings.copyWith(themeIsDark: isDark);
-
-    appState.content(_appSettings);
+    themeIsDarkState.content(isDark);
   }
 
   /// Тема сохраняем
   Future<void> setThemeIsDark({required bool isDark}) async {
-    _appSettings = _appSettings.copyWith(themeIsDark: isDark);
-    appState.content(_appSettings);
+    themeIsDarkState.content(isDark);
 
     await _prefsStorage.setThemeIsDark(isDark: isDark);
   }
@@ -56,15 +54,13 @@ class AppSettingsService {
   /// Получаем
   Future<void> getMainTab() async {
     final mainTab = await _prefsStorage.getMainTab();
-    _appSettings = _appSettings.copyWith(mainTab: mainTab);
 
-    appState.content(_appSettings);
+    tabsState.content(mainTab);
   }
 
   /// Сохраняем
   Future<void> setMainTab(int currentTab) async {
-    _appSettings = _appSettings.copyWith(mainTab: currentTab);
-    appState.content(_appSettings);
+    tabsState.content(currentTab);
 
     await _prefsStorage.setMainTab(currentTab);
   }
@@ -72,15 +68,13 @@ class AppSettingsService {
   /// Текущий статус онбординга
   Future<void> onboardingIsComplete() async {
     final isComplete = await _prefsStorage.onboardingIsComplete();
-    _appSettings = _appSettings.copyWith(onboardingIsComplete: isComplete);
 
-    appState.content(_appSettings);
+    onboardingIsCompleteState.content(isComplete);
   }
 
   /// Если онбординг пройден сохраним флаг
   Future<void> setOnboardingIsComplete({required bool isComplete}) async {
-    _appSettings = _appSettings.copyWith(onboardingIsComplete: isComplete);
-    appState.content(_appSettings);
+    onboardingIsCompleteState.content(isComplete);
 
     await _prefsStorage.setOnboardingIsComplete(isComplete: isComplete);
   }
@@ -88,15 +82,13 @@ class AppSettingsService {
   /// Фильтр получаем
   Future<void> getSearchFilter() async {
     final filter = await _prefsStorage.getSearchFilter();
-    _appSettings = _appSettings.copyWith(searchFilter: filter);
 
-    appState.content(_appSettings);
+    searchFilterState.content(filter);
   }
 
   /// Фильтр сохраняем
   Future<void> setSearchFilter(SearchFilter filter) async {
-    _appSettings = _appSettings.copyWith(searchFilter: filter);
-    appState.content(_appSettings);
+    searchFilterState.content(filter);
 
     await _prefsStorage.setSearchFilter(filter);
   }

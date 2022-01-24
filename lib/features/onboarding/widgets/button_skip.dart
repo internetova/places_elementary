@@ -7,19 +7,19 @@ import 'package:places_elementary/features/onboarding/domain/entity/onboarding_i
 /// Кнопка Пропустить для онбординга
 /// [data] - данные для экрана онбординга
 /// [currentPage] - текущая страница онбординга
-/// [startApp] - перейти к приложению
+/// [skipOnboarding] - перейти к приложению пропустив онбординг
 /// [buttonAnimation] - настройки анимации скрытия кнопки
 class ButtonSkip extends StatelessWidget {
   final List<OnboardingItem> data;
   final int currentPage;
-  final VoidCallback startApp;
+  final VoidCallback skipOnboarding;
   final Animation<double> buttonAnimation;
 
   const ButtonSkip({
     Key? key,
     required this.data,
     required this.currentPage,
-    required this.startApp,
+    required this.skipOnboarding,
     required this.buttonAnimation,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class ButtonSkip extends StatelessWidget {
           primary: Theme.of(context).colorScheme.green,
           textStyle: Theme.of(context).textTheme.headline5,
         ),
-        onPressed: startApp,
+        onPressed: skipOnboarding,
         child: Text(AppLocalizations.of(context)!.onboardingButtonTitleSkip),
       ),
     );

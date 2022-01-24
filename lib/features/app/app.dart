@@ -43,7 +43,7 @@ class _AppState extends State<App> {
         return _scope;
       },
       child: EntityStateNotifierBuilder<bool>(
-        listenableEntityState: _scope.settingsService.themeIsDarkState,
+        listenableEntityState: _scope.appSettingsService.themeIsDarkState,
         builder: (_, data) => MaterialApp.router(
           /// Localization.
           locale: _localizations.first,
@@ -78,7 +78,7 @@ class _AppState extends State<App> {
     coordinator
       ..initialCoordinate = AppCoordinate.initial
       ..registerCoordinates('/', appCoordinates)
-      ..registerCoordinates('/onboarding', onboardingCoordinates);
+      ..registerCoordinates('/onboarding/', onboardingCoordinates);
   }
 
   void _rebuildApplication() {

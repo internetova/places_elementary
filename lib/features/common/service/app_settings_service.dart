@@ -3,6 +3,7 @@ import 'package:places_elementary/features/common/domain/entity/app_settings.dar
 import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
 import 'package:places_elementary/features/places/domain/entity/search_filter.dart';
 
+// TODO(sugina): разнести по отдельным сервисам
 /// Настройки приложения:
 /// - статус прохождения онбординга
 /// - тема приложения

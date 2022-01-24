@@ -1,37 +1,37 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
-import 'package:places_elementary/features/main/screens/main_screen/main_screen.dart';
-import 'package:places_elementary/features/main/screens/main_screen/main_screen_model.dart';
+import 'package:places_elementary/features/app/screens/tabs_screen/tabs_screen.dart';
+import 'package:places_elementary/features/app/screens/tabs_screen/tabs_screen_model.dart';
 import 'package:provider/provider.dart';
 
-/// Контракт для использования на MainScreen
-abstract class IMainScreenWidgetModel extends IWidgetModel {
+/// Контракт для использования на TabsScreen
+abstract class ITabsScreenWidgetModel extends IWidgetModel {
   ListenableState<int> get tabState;
 
   void switchTab(int tabIndex);
 }
 
 /// Фабрика для создания виджет модели
-MainScreenWidgetModel defaultMainScreenWidgetModelFactory(BuildContext context) {
+TabsScreenWidgetModel defaultTabsScreenWidgetModelFactory(BuildContext context) {
   final appDependencies = context.read<IAppScope>();
-  final model = MainScreenModel(
+  final model = TabsScreenModel(
     appDependencies.errorHandler,
-    appDependencies.appSettingsService,
+    appDependencies.tabsService,
   );
 
-  return MainScreenWidgetModel(model);
+  return TabsScreenWidgetModel(model);
 }
 
 /// Виджет модель для MainScreen
-class MainScreenWidgetModel extends WidgetModel<MainScreen, MainScreenModel>
-    implements IMainScreenWidgetModel {
+class TabsScreenWidgetModel extends WidgetModel<TabsScreen, TabsScreenModel>
+    with SingleTickerProviderWidgetModelMixin implements ITabsScreenWidgetModel {
   final _tabState = StateNotifier<int>();
 
   @override
   ListenableState<int> get tabState => _tabState;
 
-  MainScreenWidgetModel(MainScreenModel model) : super(model);
+  TabsScreenWidgetModel(TabsScreenModel model) : super(model);
 
   @override
   void initWidgetModel() {
@@ -47,7 +47,7 @@ class MainScreenWidgetModel extends WidgetModel<MainScreen, MainScreenModel>
   }
 
   void _init() {
-    final currentTab = model.initData()?.mainTab;
+    final currentTab = model.initData();
     _tabState.accept(currentTab);
   }
 }

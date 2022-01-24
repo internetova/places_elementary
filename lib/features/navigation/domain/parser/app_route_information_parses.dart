@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
+import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
 
 /// [RouteInformationParser] implementation.

@@ -6,11 +6,12 @@ import 'package:elementary/elementary.dart';
 import 'package:places_elementary/api/service/places_api.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/app/service/tabs_service.dart';
 import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
-import 'package:places_elementary/features/common/service/app_settings_service.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/domain/repository/places_repository.dart';
 import 'package:places_elementary/features/places/service/places_service.dart';
+import 'package:places_elementary/features/settings/service/settings_service.dart';
 import 'package:places_elementary/util/default_error_handler.dart';
 
 /// Scope of dependencies which need through all app's life.
@@ -27,7 +28,8 @@ class AppScope implements IAppScope {
   late final PlacesService _placesService;
 
   /// Настройки
-  late final AppSettingsService _appSettingsService;
+  late final SettingsService _settingsService;
+  late final TabsService _tabsService;
 
   @override
   Dio get dio => _dio;
@@ -45,7 +47,10 @@ class AppScope implements IAppScope {
   PlacesService get placesService => _placesService;
 
   @override
-  AppSettingsService get appSettingsService => _appSettingsService;
+  SettingsService get settingsService => _settingsService;
+
+  @override
+  TabsService get tabsService => _tabsService;
 
   /// Create an instance [AppScope].
   AppScope({
@@ -60,7 +65,8 @@ class AppScope implements IAppScope {
     _prefsStorage = SharedPrefsStorage();
 
     _placesService = _initPlacesService(_dio);
-    _appSettingsService = _initAppSettingsService(_prefsStorage);
+    _settingsService = _initSettingsService(_prefsStorage);
+    _tabsService = _initTabsService(_prefsStorage);
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -105,8 +111,13 @@ class AppScope implements IAppScope {
   }
 
   /// Работа с настройками приложения
-  AppSettingsService _initAppSettingsService(SharedPrefsStorage storage) {
-    return AppSettingsService(storage);
+  SettingsService _initSettingsService(SharedPrefsStorage storage) {
+    return SettingsService(storage);
+  }
+
+  /// Работа с табами
+  TabsService _initTabsService(SharedPrefsStorage storage) {
+    return TabsService(storage);
   }
 }
 
@@ -127,6 +138,9 @@ abstract class IAppScope {
   /// Сервис для работы с местами
   PlacesService get placesService;
 
-  /// Сервис для работы с нижней навигацией
-  AppSettingsService get appSettingsService;
+  /// Сервис для работы с настройками
+  SettingsService get settingsService;
+
+  /// Сервис для работы с табами нижней навигации
+  TabsService get tabsService;
 }

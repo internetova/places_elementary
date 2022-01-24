@@ -1,14 +1,13 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
-import 'package:places_elementary/features/navigation/domain/entity/app_coordinate.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/temp/screens/temp_screen/temp_screen.dart';
 import 'package:places_elementary/features/temp/screens/temp_screen/temp_screen_model.dart';
 import 'package:provider/provider.dart';
 
 /// Factory for [TempScreenWidgetModel].
-// TODO(sugina): временно для теста.
 TempScreenWidgetModel initScreenWidgetModelFactory(
   BuildContext context,
 ) {
@@ -31,19 +30,12 @@ class TempScreenWidgetModel extends WidgetModel<TempScreen, TempScreenModel>
   ) : super(model);
 
   @override
-  void goPlaceScreen() {
-    coordinator.navigate(context, AppCoordinate.placesScreen);
-  }
-
-  @override
-  void goMainScreen() {
-    coordinator.navigate(context, AppCoordinate.mainScreen);
+  void goTabScreen() {
+    coordinator.navigate(context, AppCoordinate.tabsScreen);
   }
 }
 
 /// Interface of [TempScreenWidgetModel].
 abstract class IDebugWidgetModel extends IWidgetModel {
-  void goPlaceScreen();
-
-  void goMainScreen();
+  void goTabScreen();
 }

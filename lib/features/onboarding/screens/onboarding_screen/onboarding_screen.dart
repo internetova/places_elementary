@@ -25,7 +25,7 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
             ButtonSkip(
               data: wm.data,
               currentPage: page ?? 0,
-              startApp: wm.goMainScreen,
+              startApp: wm.goTabsScreen,
               buttonAnimation: wm.buttonSkipAnimation,
             ),
           ],
@@ -39,7 +39,7 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
         floatingActionButton: ButtonStart(
           data: wm.data,
           currentPage: page ?? 0,
-          startApp: wm.goMainScreen,
+          startApp: wm.goTabsScreen,
           buttonAnimation: wm.buttonStartAnimation,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

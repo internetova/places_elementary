@@ -17,7 +17,7 @@ TabsScreenWidgetModel defaultTabsScreenWidgetModelFactory(BuildContext context) 
   final appDependencies = context.read<IAppScope>();
   final model = TabsScreenModel(
     appDependencies.errorHandler,
-    appDependencies.tabsService,
+    appDependencies.appSettingsService,
   );
 
   return TabsScreenWidgetModel(model);

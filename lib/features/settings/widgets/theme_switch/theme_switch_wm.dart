@@ -26,7 +26,7 @@ ThemeSwitchWidgetModel defaultThemeSwitchWidgetModelFactory(BuildContext context
   final appDependencies = context.read<IAppScope>();
   final model = ThemeSwitchModel(
     appDependencies.errorHandler,
-    appDependencies.settingsService,
+    appDependencies.appSettingsService,
   );
 
   return ThemeSwitchWidgetModel(model);

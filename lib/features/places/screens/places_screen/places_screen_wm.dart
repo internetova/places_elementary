@@ -26,7 +26,7 @@ PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext conte
 /// Default widget model for PlacesScreen
 class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenModel>
     implements IPlacesScreenWidgetModel {
-  late final _placesState = EntityStateNotifier<List<Place>>();
+  final _placesState = EntityStateNotifier<List<Place>>();
 
   final _scrollController = ScrollController();
 

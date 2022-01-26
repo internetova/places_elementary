@@ -28,7 +28,7 @@ class PlacesBuilder extends StatelessWidget {
             AppSizes.paddingStandard,
           ),
           child: PlaceCard(
-            card: data[index],
+            place: data[index],
           ),
         ),
         itemCount: data.length,

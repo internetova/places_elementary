@@ -25,10 +25,7 @@ class _$PlaceTearOff {
       required List<String> urls,
       required String placeType,
       required String description,
-      double? distance,
-      bool isFavorite = false,
-      CardType cardType = CardType.search,
-      DateTime? date}) {
+      double? distance}) {
     return _Place(
       id: id,
       lat: lat,
@@ -38,9 +35,6 @@ class _$PlaceTearOff {
       placeType: placeType,
       description: description,
       distance: distance,
-      isFavorite: isFavorite,
-      cardType: cardType,
-      date: date,
     );
   }
 }
@@ -58,9 +52,6 @@ mixin _$Place {
   String get placeType => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
-  bool get isFavorite => throw _privateConstructorUsedError;
-  CardType get cardType => throw _privateConstructorUsedError;
-  DateTime? get date => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlaceCopyWith<Place> get copyWith => throw _privateConstructorUsedError;
@@ -78,10 +69,7 @@ abstract class $PlaceCopyWith<$Res> {
       List<String> urls,
       String placeType,
       String description,
-      double? distance,
-      bool isFavorite,
-      CardType cardType,
-      DateTime? date});
+      double? distance});
 }
 
 /// @nodoc
@@ -102,9 +90,6 @@ class _$PlaceCopyWithImpl<$Res> implements $PlaceCopyWith<$Res> {
     Object? placeType = freezed,
     Object? description = freezed,
     Object? distance = freezed,
-    Object? isFavorite = freezed,
-    Object? cardType = freezed,
-    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -139,18 +124,6 @@ class _$PlaceCopyWithImpl<$Res> implements $PlaceCopyWith<$Res> {
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      isFavorite: isFavorite == freezed
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
-      cardType: cardType == freezed
-          ? _value.cardType
-          : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -168,10 +141,7 @@ abstract class _$PlaceCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       List<String> urls,
       String placeType,
       String description,
-      double? distance,
-      bool isFavorite,
-      CardType cardType,
-      DateTime? date});
+      double? distance});
 }
 
 /// @nodoc
@@ -193,9 +163,6 @@ class __$PlaceCopyWithImpl<$Res> extends _$PlaceCopyWithImpl<$Res>
     Object? placeType = freezed,
     Object? description = freezed,
     Object? distance = freezed,
-    Object? isFavorite = freezed,
-    Object? cardType = freezed,
-    Object? date = freezed,
   }) {
     return _then(_Place(
       id: id == freezed
@@ -230,18 +197,6 @@ class __$PlaceCopyWithImpl<$Res> extends _$PlaceCopyWithImpl<$Res>
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as double?,
-      isFavorite: isFavorite == freezed
-          ? _value.isFavorite
-          : isFavorite // ignore: cast_nullable_to_non_nullable
-              as bool,
-      cardType: cardType == freezed
-          ? _value.cardType
-          : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
-      date: date == freezed
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
     ));
   }
 }
@@ -257,10 +212,7 @@ class _$_Place implements _Place {
       required this.urls,
       required this.placeType,
       required this.description,
-      this.distance,
-      this.isFavorite = false,
-      this.cardType = CardType.search,
-      this.date});
+      this.distance});
 
   @override
   final int id;
@@ -278,18 +230,10 @@ class _$_Place implements _Place {
   final String description;
   @override
   final double? distance;
-  @JsonKey()
-  @override
-  final bool isFavorite;
-  @JsonKey()
-  @override
-  final CardType cardType;
-  @override
-  final DateTime? date;
 
   @override
   String toString() {
-    return 'Place(id: $id, lat: $lat, lng: $lng, name: $name, urls: $urls, placeType: $placeType, description: $description, distance: $distance, isFavorite: $isFavorite, cardType: $cardType, date: $date)';
+    return 'Place(id: $id, lat: $lat, lng: $lng, name: $name, urls: $urls, placeType: $placeType, description: $description, distance: $distance)';
   }
 
   @override
@@ -305,11 +249,7 @@ class _$_Place implements _Place {
             const DeepCollectionEquality().equals(other.placeType, placeType) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.distance, distance) &&
-            const DeepCollectionEquality()
-                .equals(other.isFavorite, isFavorite) &&
-            const DeepCollectionEquality().equals(other.cardType, cardType) &&
-            const DeepCollectionEquality().equals(other.date, date));
+            const DeepCollectionEquality().equals(other.distance, distance));
   }
 
   @override
@@ -322,10 +262,7 @@ class _$_Place implements _Place {
       const DeepCollectionEquality().hash(urls),
       const DeepCollectionEquality().hash(placeType),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(distance),
-      const DeepCollectionEquality().hash(isFavorite),
-      const DeepCollectionEquality().hash(cardType),
-      const DeepCollectionEquality().hash(date));
+      const DeepCollectionEquality().hash(distance));
 
   @JsonKey(ignore: true)
   @override
@@ -342,10 +279,7 @@ abstract class _Place implements Place {
       required List<String> urls,
       required String placeType,
       required String description,
-      double? distance,
-      bool isFavorite,
-      CardType cardType,
-      DateTime? date}) = _$_Place;
+      double? distance}) = _$_Place;
 
   @override
   int get id;
@@ -363,12 +297,6 @@ abstract class _Place implements Place {
   String get description;
   @override
   double? get distance;
-  @override
-  bool get isFavorite;
-  @override
-  CardType get cardType;
-  @override
-  DateTime? get date;
   @override
   @JsonKey(ignore: true)
   _$PlaceCopyWith<_Place> get copyWith => throw _privateConstructorUsedError;

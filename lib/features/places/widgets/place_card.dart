@@ -4,18 +4,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places_elementary/assets/colors/colors.dart';
 import 'package:places_elementary/assets/res/app_assets.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
-import 'package:places_elementary/features/common/widgets/buttons/icon_action_button.dart';
 import 'package:places_elementary/features/places/constants/places_constants.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/widgets/card_content_type.dart';
+import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
 
 /// Карточка интересного места для главного списка мест
 class PlaceCard extends StatelessWidget {
-  final Place card;
+  final Place place;
 
   const PlaceCard({
     Key? key,
-    required this.card,
+    required this.place,
   }) : super(key: key);
 
   @override
@@ -33,17 +33,17 @@ class PlaceCard extends StatelessWidget {
                 Stack(
                   children: [
                     _CardImagePreview(
-                      imgUrl: card.urls.first,
+                      imgUrl: place.urls.first,
                     ),
                     Positioned(
                       top: 8,
                       left: 16,
                       right: 12,
-                      child: CardContentType(type: card.placeType),
+                      child: CardContentType(type: place.placeType),
                     ),
                   ],
                 ),
-                _CardContent(card: card),
+                _CardContent(card: place),
               ],
             ),
             Positioned.fill(
@@ -59,7 +59,7 @@ class PlaceCard extends StatelessWidget {
             Positioned(
               top: 8,
               right: 16,
-              child: _CardActions(card: card),
+              child: FavoritesButtonWidget(place: place),
             ),
           ],
         ),
@@ -146,26 +146,6 @@ class _ImagePlaceholder extends StatelessWidget {
         height: 64,
         color: AppColors.colorInactiveBlack,
       ),
-    );
-  }
-}
-
-/// Кнопки действий: избранное
-class _CardActions extends StatelessWidget {
-  final Place card;
-
-  const _CardActions({
-    Key? key,
-    required this.card,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconActionButton(
-      onPressed: () {
-        debugPrint('-------- Кнопка Избранное');
-      },
-      icon: AppAssets.icFavorites,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:elementary/elementary.dart';
 import 'package:places_elementary/api/service/places_api.dart';
 import 'package:places_elementary/config/app_config.dart';
 import 'package:places_elementary/config/environment/environment.dart';
+import 'package:places_elementary/features/common/domain/repository/objectbox_storage.dart';
 import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
 import 'package:places_elementary/features/common/service/app_settings_service.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
@@ -20,6 +21,7 @@ class AppScope implements IAppScope {
   late final VoidCallback _applicationRebuilder;
   late final Coordinator _coordinator;
   late final SharedPrefsStorage _prefsStorage;
+  late final ObjectboxStorage _objectboxStorage;
 
   /// Настройки
   late final AppSettingsService _appSettingsService;
@@ -104,9 +106,10 @@ class AppScope implements IAppScope {
   /// Работа с местами
   PlacesService _initPlacesService(Dio dio) {
     _placesApi = PlacesApi(dio);
+    _objectboxStorage = ObjectboxStorage()..init();
     _placesRepository = PlacesRepository(_placesApi);
 
-    return PlacesService(_placesRepository);
+    return PlacesService(_placesRepository, _objectboxStorage);
   }
 }
 

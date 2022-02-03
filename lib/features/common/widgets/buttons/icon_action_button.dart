@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places_elementary/features/common/widgets/buttons/icon_svg.dart';
 
 /// Кнопки действий для карточек поверх картинки
 class IconActionButton extends StatelessWidget {
   final String icon;
-  final double width;
-  final double height;
+  final double size;
   final Color color;
   final VoidCallback? onPressed;
 
@@ -13,8 +12,7 @@ class IconActionButton extends StatelessWidget {
     Key? key,
     required this.icon,
     this.onPressed,
-    this.width = 24,
-    this.height = 24,
+    this.size = 24,
     this.color = Colors.white,
   }) : super(key: key);
 
@@ -30,11 +28,10 @@ class IconActionButton extends StatelessWidget {
           padding: const EdgeInsets.all(4),
           elevation: 0,
         ),
-        child: SvgPicture.asset(
-          icon,
-          width: width,
-          height: height,
+        child: IconSvg(
+          icon: icon,
           color: color,
+          size: size,
         ),
       ),
     );

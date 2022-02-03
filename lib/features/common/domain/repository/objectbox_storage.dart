@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:places_elementary/features/places/domain/entity/favorite.dart';
-import 'package:places_elementary/features/places/domain/entity/favorite_type.dart';
+import 'package:places_elementary/features/common/domain/repository/i_local_storage.dart';
+import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
+import 'package:places_elementary/features/favorites/domain/entity/favorite_db.dart';
+import 'package:places_elementary/features/favorites/domain/entity/favorite_type.dart';
+import 'package:places_elementary/features/favorites/domain/mappers/favorites_mapper.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/objectbox.g.dart';
 
@@ -9,9 +14,67 @@ import 'package:places_elementary/objectbox.g.dart';
 /// Храним:
 /// - избранные места
 /// - историю запросов поиска (тексты запроса)
-class ObjectboxStorage {
+class ObjectboxStorage implements ILocalStorage {
   late final Store store;
   late final Box favoritesBox;
+
+  /// Место избранное?
+  @override
+  bool isFavorite(Place place) {
+    final query = favoritesBox
+        .query(
+          FavoriteDb_.placeId.equals(place.id),
+        )
+        .build();
+
+    final fav = query.findFirst() as FavoriteDb?;
+    query.close();
+
+    return fav != null;
+  }
+
+  /// Добавить в избранные
+  @override
+  void addFavorites(Place place) {
+    favoritesBox.put(
+      FavoriteDb(
+        placeId: place.id,
+        place: json.encode(place),
+        favoriteType: FavoriteType.planned.name,
+      ),
+    );
+  }
+
+  /// Удалить из избранных
+  @override
+  void removeFavorites(Place place) {
+    final query = favoritesBox
+        .query(
+          FavoriteDb_.placeId.equals(place.id),
+        )
+        .build();
+
+    final fav = query.findFirst() as FavoriteDb?;
+
+    if (fav != null) {
+      favoritesBox.remove(fav.id);
+    }
+  }
+
+  /// Получить список избранных мест
+  @override
+  List<Favorite> getFavoritesPlaces(FavoriteType favoriteType) {
+    final query = favoritesBox
+        .query(
+          FavoriteDb_.favoriteType.equals(favoriteType.name),
+        )
+        .build();
+
+    final places = query.find() as List<FavoriteDb>;
+    query.close();
+
+    return places.map(mapFavorite).toList();
+  }
 
   void init() {
     getApplicationDocumentsDirectory().then((dir) {
@@ -19,74 +82,7 @@ class ObjectboxStorage {
         getObjectBoxModel(),
         directory: join(dir.path, 'objectbox'),
       );
-      favoritesBox = store.box<Favorite>();
+      favoritesBox = store.box<FavoriteDb>();
     });
-  }
-
-  /// Место избранное?
-  bool isFavorite(Place place) {
-    final query = favoritesBox
-        .query(
-          Favorite_.placeId.equals(place.id),
-        )
-        .build();
-
-    final fav = query.findFirst() as Favorite?;
-    query.close();
-
-    return fav != null;
-  }
-
-  /// Добавить в избранные
-  void addFavorites(Place place) {
-    favoritesBox.put(
-      Favorite(
-        placeId: place.id,
-        favoriteType: FavoriteType.planned.toString(),
-      ),
-    );
-  }
-
-  /// Удалить из избранных
-  void removeFavorites(Place place) {
-    final query = favoritesBox
-        .query(
-          Favorite_.placeId.equals(place.id),
-        )
-        .build();
-
-    final fav = query.findFirst() as Favorite?;
-
-    if (fav != null) {
-      favoritesBox.remove(fav.id);
-    }
-  }
-
-  /// Получить список избранных Планирую
-  List<Favorite> getPlannedPlaces() {
-    final query = favoritesBox
-        .query(
-          Favorite_.favoriteType.equals(FavoriteType.planned.toString()),
-        )
-        .build();
-
-    final places = query.find() as List<Favorite>;
-    query.close();
-
-    return places;
-  }
-
-  /// Получить список избранных Посетил
-  List<Favorite> getVisitedPlaces() {
-    final query = favoritesBox
-        .query(
-          Favorite_.favoriteType.equals(FavoriteType.visited.toString()),
-        )
-        .build();
-
-    final places = query.find() as List<Favorite>;
-    query.close();
-
-    return places;
   }
 }

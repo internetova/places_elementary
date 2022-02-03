@@ -1,16 +1,16 @@
-import 'package:places_elementary/features/common/domain/repository/objectbox_storage.dart';
-import 'package:places_elementary/features/places/domain/entity/favorite.dart';
+import 'package:places_elementary/features/common/domain/repository/i_local_storage.dart';
 import 'package:places_elementary/features/places/domain/entity/object_position.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/domain/entity/search_filter.dart';
 import 'package:places_elementary/features/places/domain/repository/places_repository.dart';
 
 /// Сервис для работы с местами
+/// [ILocalStorage] - сейчас ObjectboxStorage
 class PlacesService {
   final PlacesRepository _repository;
-  final ObjectboxStorage _objectboxStorage;
+  final ILocalStorage _localStorage;
 
-  PlacesService(this._repository, this._objectboxStorage);
+  PlacesService(this._repository, this._localStorage);
 
   /// Получить все места
   Future<List<Place>> getAllPlaces() => _repository.getAllPlaces();
@@ -41,17 +41,11 @@ class PlacesService {
   Future<Place> getPlaceDetails(int placeId) => _repository.getPlaceDetails(placeId);
 
   /// Место избранное?
-  bool isFavorite(Place place) => _objectboxStorage.isFavorite(place);
+  bool isFavorite(Place place) => _localStorage.isFavorite(place);
 
   /// Добавить в избранные
-  void addFavorites(Place place) => _objectboxStorage.addFavorites(place);
+  void addFavorites(Place place) => _localStorage.addFavorites(place);
 
   /// Удалить из избранных
-  void removeFavorites(Place place) => _objectboxStorage.removeFavorites(place);
-
-  /// Получить список избранных Планирую
-  List<Favorite> getPlannedPlaces() => _objectboxStorage.getPlannedPlaces();
-
-  /// Получить список избранных Посетил
-  List<Favorite> getVisitedPlaces() => _objectboxStorage.getVisitedPlaces();
+  void removeFavorites(Place place) => _localStorage.removeFavorites(place);
 }

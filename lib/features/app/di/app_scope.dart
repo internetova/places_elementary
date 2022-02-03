@@ -9,6 +9,8 @@ import 'package:places_elementary/config/environment/environment.dart';
 import 'package:places_elementary/features/common/domain/repository/objectbox_storage.dart';
 import 'package:places_elementary/features/common/domain/repository/shared_prefs_storage.dart';
 import 'package:places_elementary/features/common/service/app_settings_service.dart';
+import 'package:places_elementary/features/common/service/favorites_manager.dart';
+import 'package:places_elementary/features/favorites/service/favorites_service.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/domain/repository/places_repository.dart';
 import 'package:places_elementary/features/places/service/places_service.dart';
@@ -30,6 +32,8 @@ class AppScope implements IAppScope {
   late final PlacesApi _placesApi;
   late final PlacesRepository _placesRepository;
   late final PlacesService _placesService;
+  late final FavoritesService _favoritesService;
+  late final FavoritesManager _favoritesManager;
 
   @override
   Dio get dio => _dio;
@@ -49,6 +53,12 @@ class AppScope implements IAppScope {
   @override
   PlacesService get placesService => _placesService;
 
+  @override
+  FavoritesService get favoritesService => _favoritesService;
+
+  @override
+  FavoritesManager get favoritesManager => _favoritesManager;
+
   /// Create an instance [AppScope].
   AppScope({
     required VoidCallback applicationRebuilder,
@@ -60,9 +70,12 @@ class AppScope implements IAppScope {
     _errorHandler = DefaultErrorHandler();
     _coordinator = Coordinator();
     _prefsStorage = SharedPrefsStorage();
+    _objectboxStorage = ObjectboxStorage()..init();
 
     _appSettingsService = _initAppSettingsService(_prefsStorage);
     _placesService = _initPlacesService(_dio);
+    _favoritesService = _initFavoritesService();
+    _favoritesManager = FavoritesManager();
   }
 
   Dio _initDio(Iterable<Interceptor> additionalInterceptors) {
@@ -106,10 +119,14 @@ class AppScope implements IAppScope {
   /// Работа с местами
   PlacesService _initPlacesService(Dio dio) {
     _placesApi = PlacesApi(dio);
-    _objectboxStorage = ObjectboxStorage()..init();
     _placesRepository = PlacesRepository(_placesApi);
 
     return PlacesService(_placesRepository, _objectboxStorage);
+  }
+
+  /// Избранные места
+  FavoritesService _initFavoritesService() {
+    return FavoritesService(_objectboxStorage);
   }
 }
 
@@ -132,4 +149,10 @@ abstract class IAppScope {
 
   /// Сервис для работы с местами
   PlacesService get placesService;
+
+  /// Сервис для работы с избранными местами
+  FavoritesService get favoritesService;
+
+  /// Для обновления данных на экранах где отображаются избранные места
+  FavoritesManager get favoritesManager;
 }

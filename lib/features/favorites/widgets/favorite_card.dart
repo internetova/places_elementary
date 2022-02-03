@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/for_card/card_content_type.dart';
 import 'package:places_elementary/features/common/widgets/for_card/card_image_preview.dart';
-import 'package:places_elementary/features/places/domain/entity/place.dart';
-import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
-import 'package:places_elementary/features/places/widgets/for_card/card_content.dart';
+import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
+import 'package:places_elementary/features/favorites/widgets/for_card/card_actions_favorite.dart';
+import 'package:places_elementary/features/favorites/widgets/for_card/card_content_favorite.dart';
 
-/// Карточка интересного места для главного списка мест
-class PlaceCard extends StatelessWidget {
-  final Place place;
+/// Карточка избранного места
+class FavoriteCard extends StatelessWidget {
+  final Favorite favorite;
 
-  const PlaceCard({
+  const FavoriteCard({
     Key? key,
-    required this.place,
+    required this.favorite,
   }) : super(key: key);
 
   @override
@@ -30,17 +30,19 @@ class PlaceCard extends StatelessWidget {
                 Stack(
                   children: [
                     CardImagePreview(
-                      imgUrl: place.urls.first,
+                      imgUrl: favorite.place.urls.first,
                     ),
                     Positioned(
                       top: 10,
                       left: 16,
                       right: 12,
-                      child: CardContentType(type: place.placeType),
+                      child: CardContentType(type: favorite.place.placeType),
                     ),
                   ],
                 ),
-                CardContent(card: place),
+                CardContentFavorite(
+                  favorite: favorite,
+                ),
               ],
             ),
             Positioned.fill(
@@ -56,7 +58,7 @@ class PlaceCard extends StatelessWidget {
             Positioned(
               top: 4,
               right: 16,
-              child: FavoritesButtonWidget(place: place),
+              child: CardActionsFavorite(place: favorite.place),
             ),
           ],
         ),

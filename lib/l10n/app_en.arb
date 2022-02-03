@@ -75,6 +75,38 @@
   "@onboardingItemThreeText": {
     "description": "Текст для слайда 3 онбординга"
   },
+  "favoritesTitleScreen": "Избранное",
+  "@favoritesTitleScreen": {
+    "description": "Название экрана Избранные"
+  },
+  "favoritesTabPlanned": "Хочу посетить",
+  "@favoritesTabPlanned": {
+    "description": "Название таба 1"
+  },
+  "favoritesTabVisited": "Посетил",
+  "@favoritesTabVisited": {
+    "description": "Название таба 2"
+  },
+  "favoritesDatePlanned": "Запланировано на",
+  "@favoritesDatePlanned": {
+    "description": "Текст перед датой"
+  },
+  "favoritesDateVisited": "Цель достигнута",
+  "@favoritesDateVisited": {
+    "description": "Текст перед датой"
+  },
+  "favoritesPlannedEmptyText": "Отмечайте понравившиеся\nместа и они появятся здесь.",
+  "@favoritesPlannedEmptyText": {
+    "description": "Текст при пустом стейте"
+  },
+  "favoritesVisitedEmptyText": "Завершите маршрут,\nчтобы место попало сюда.",
+  "@favoritesVisitedEmptyText": {
+    "description": "Текст при пустом стейте"
+  },
+  "favoritesDelete": "Удалить",
+  "@favoritesDelete": {
+    "description": "Текст на фоне при удалении карточки из избранного"
+  },
   "placeTypeNameHotel": "Отель",
   "@placeTypeNameHotel": {
     "description": "Название типа места"

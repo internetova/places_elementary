@@ -13,6 +13,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Place _$PlaceFromJson(Map<String, dynamic> json) {
+  return _Place.fromJson(json);
+}
+
 /// @nodoc
 class _$PlaceTearOff {
   const _$PlaceTearOff();
@@ -37,6 +41,10 @@ class _$PlaceTearOff {
       distance: distance,
     );
   }
+
+  Place fromJson(Map<String, Object?> json) {
+    return Place.fromJson(json);
+  }
 }
 
 /// @nodoc
@@ -53,6 +61,7 @@ mixin _$Place {
   String get description => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlaceCopyWith<Place> get copyWith => throw _privateConstructorUsedError;
 }
@@ -202,7 +211,7 @@ class __$PlaceCopyWithImpl<$Res> extends _$PlaceCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Place implements _Place {
   const _$_Place(
       {required this.id,
@@ -213,6 +222,9 @@ class _$_Place implements _Place {
       required this.placeType,
       required this.description,
       this.distance});
+
+  factory _$_Place.fromJson(Map<String, dynamic> json) =>
+      _$$_PlaceFromJson(json);
 
   @override
   final int id;
@@ -268,6 +280,11 @@ class _$_Place implements _Place {
   @override
   _$PlaceCopyWith<_Place> get copyWith =>
       __$PlaceCopyWithImpl<_Place>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlaceToJson(this);
+  }
 }
 
 abstract class _Place implements Place {
@@ -280,6 +297,8 @@ abstract class _Place implements Place {
       required String placeType,
       required String description,
       double? distance}) = _$_Place;
+
+  factory _Place.fromJson(Map<String, dynamic> json) = _$_Place.fromJson;
 
   @override
   int get id;

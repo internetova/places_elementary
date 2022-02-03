@@ -1,17 +1,19 @@
 import 'package:objectbox/objectbox.dart';
 
-/// Избранное место
+/// Избранное место для хранения в базе данных
 @Entity()
-class Favorite {
+class FavoriteDb {
   int id;
   @Index()
   int placeId;
+  String place;
   String favoriteType;
   DateTime? date;
 
-  Favorite({
+  FavoriteDb({
     this.id = 0,
     required this.placeId,
+    required this.place,
     required this.favoriteType,
     this.date,
   });

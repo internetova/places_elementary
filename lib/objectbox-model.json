@@ -4,47 +4,61 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:2863602009001187472",
-      "lastPropertyId": "5:6628197238097942162",
-      "name": "Favorite",
+      "id": "2:461994261577863779",
+      "lastPropertyId": "7:3640871508486581190",
+      "name": "FavoriteDb",
       "properties": [
         {
-          "id": "1:2734136500699923868",
+          "id": "1:2747524620986222775",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:5958414250570662468",
+          "id": "2:119928629148320953",
+          "name": "placeId",
+          "type": 6,
+          "flags": 8,
+          "indexId": "2:5173906232786800890"
+        },
+        {
+          "id": "3:3203024892035413721",
+          "name": "place",
+          "type": 9
+        },
+        {
+          "id": "5:6000582192994827121",
           "name": "date",
           "type": 10
         },
         {
-          "id": "3:346278233831575643",
+          "id": "7:3640871508486581190",
           "name": "favoriteType",
           "type": 9
-        },
-        {
-          "id": "5:6628197238097942162",
-          "name": "placeId",
-          "type": 6,
-          "flags": 8,
-          "indexId": "1:2465020251807844523"
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:2863602009001187472",
-  "lastIndexId": "1:2465020251807844523",
+  "lastEntityId": "2:461994261577863779",
+  "lastIndexId": "2:5173906232786800890",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    2863602009001187472
+  ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
-    5192488052698133379
+    5192488052698133379,
+    2734136500699923868,
+    5958414250570662468,
+    346278233831575643,
+    6628197238097942162,
+    7097027162091483651,
+    8041159147394840189,
+    7477798122154345678
   ],
   "retiredRelationUids": [],
   "version": 1

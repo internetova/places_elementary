@@ -21,11 +21,16 @@ class AppDefaultValues {
   /// Шиммер с анимацией или без
   static const shimmerIsLoading = false;
 
+  /// Форматирование даты
+  static const dateFormatPattern = 'd MMM y';
+  static const dateFormatLocale = 'ru_RU';
+
   /// Красная площадь
   static final defaultPosition = ObjectPosition(
     lat: 55.754194,
     lng: 37.620139,
   );
+
 
   AppDefaultValues._();
 }

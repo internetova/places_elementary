@@ -14,3 +14,14 @@ Favorite mapFavorite(FavoriteDb data) {
     date: data.date,
   );
 }
+
+/// Маппер [Favorite] из [FavoriteDb]
+FavoriteDb mapFavoriteDb(Favorite data) {
+  return FavoriteDb(
+    id: data.id,
+    placeId: data.place.id,
+    place: json.encode(data.place),
+    favoriteType: data.favoriteType.name,
+    date: data.date,
+  );
+}

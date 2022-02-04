@@ -76,6 +76,30 @@ class ObjectboxStorage implements ILocalStorage {
     return places.map(mapFavorite).toList();
   }
 
+  /// Установить дату и время посещения места
+  @override
+  void setReminder(Favorite favorite) {
+    favoritesBox.put(
+      mapFavoriteDb(favorite),
+      mode: PutMode.update,
+    );
+  }
+
+  /// Получить место
+  @override
+  Favorite getFavorite(int id) {
+    final query = favoritesBox
+        .query(
+      FavoriteDb_.placeId.equals(id),
+    )
+        .build();
+
+    final place = query.findFirst() as FavoriteDb;
+    query.close();
+
+    return mapFavorite(place);
+  }
+
   void init() {
     getApplicationDocumentsDirectory().then((dir) {
       store = Store(

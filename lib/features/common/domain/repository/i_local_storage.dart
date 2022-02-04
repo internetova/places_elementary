@@ -13,6 +13,12 @@ abstract class ILocalStorage {
   /// Удалить из избранных
   void removeFavorites(Place place);
 
+  /// Установить дату и время посещения места
+  void setReminder(Favorite favorite);
+
   /// Получить список избранных мест
   List<Favorite> getFavoritesPlaces(FavoriteType favoriteType);
+
+  /// Получить место
+  Favorite getFavorite(int id);
 }

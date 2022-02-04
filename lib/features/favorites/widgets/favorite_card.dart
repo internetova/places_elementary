@@ -33,8 +33,8 @@ class FavoriteCard extends StatelessWidget {
                       imgUrl: favorite.place.urls.first,
                     ),
                     Positioned(
-                      top: 10,
-                      left: 16,
+                      top: AppSizes.paddingStandard,
+                      left: AppSizes.paddingStandard,
                       right: 12,
                       child: CardContentType(type: favorite.place.placeType),
                     ),
@@ -56,9 +56,9 @@ class FavoriteCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 4,
-              right: 16,
-              child: CardActionsFavorite(place: favorite.place),
+              top: AppSizes.paddingStandard / 2,
+              right: AppSizes.paddingStandard,
+              child: CardActionsFavorite(favorite: favorite),
             ),
           ],
         ),

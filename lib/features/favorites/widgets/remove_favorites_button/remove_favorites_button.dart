@@ -18,8 +18,9 @@ class RemoveFavoritesButton extends ElementaryWidget<IRemoveFavoritesButtonWidge
   @override
   Widget build(IRemoveFavoritesButtonWidgetModel wm) {
     return IconActionButton(
-        onPressed: wm.removeFavorite,
-        icon: AppAssets.icDelete,
+      onPressed: wm.removeFavorite,
+      icon: AppAssets.icRemove,
+      size: 16,
     );
   }
 }

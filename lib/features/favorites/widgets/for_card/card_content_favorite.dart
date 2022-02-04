@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
-import 'package:places_elementary/features/favorites/domain/entity/favorite_type.dart';
+import 'package:places_elementary/features/favorites/widgets/for_card/date_favorites/date_favorites_widget.dart';
 
 /// Контент карточки - название и детали
 class CardContentFavorite extends StatelessWidget {
@@ -15,12 +13,6 @@ class CardContentFavorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context);
-    final dataText = favorite.favoriteType == FavoriteType.planned
-        ? appLocalizations!.favoritesDatePlanned
-        : appLocalizations!.favoritesDateVisited;
-    final theme = Theme.of(context);
-
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -36,15 +28,7 @@ class CardContentFavorite extends StatelessWidget {
             width: double.infinity,
             height: 2,
           ),
-          if (favorite.date != null)
-            Text(
-              '$dataText ${favorite.date}',
-              style: favorite.favoriteType == FavoriteType.planned
-                  ? theme.textTheme.bodyText2?.copyWith(color: theme.colorScheme.green)
-                  : theme.textTheme.bodyText2,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-            ),
+          DateFavoritesWidget(favorite: favorite),
           const SizedBox(
             height: 12,
           ),

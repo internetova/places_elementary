@@ -16,6 +16,7 @@ class AppAssets {
   static const icShare = '$_baseAssetsPath/share.svg';
   static const icFavorites = '$_baseAssetsPath/heart.svg';
   static const icFavoritesFull = '$_baseAssetsPath/heart_full.svg';
+  static const icRemove = '$_baseAssetsPath/remove.svg';
 
   /// другие кнопки
   static const icGo = '$_baseAssetsPath/go.svg';

@@ -18,4 +18,10 @@ class FavoritesService {
 
   /// Удалить из избранных
   void removeFavorites(Place place) => _localStorage.removeFavorites(place);
+
+  /// Установить дату и время посещения места
+  void setReminder(Favorite favorite) => _localStorage.setReminder(favorite);
+
+  /// Получить место
+  Favorite getFavorite(int id) => _localStorage.getFavorite(id);
 }

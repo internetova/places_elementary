@@ -21,6 +21,6 @@ abstract class PlacesApi {
   Future<List<PlaceResponse>> getPlaces(@Body() PlacesFilterRequest filter);
 
   /// Получить место по id
-  @GET(PlacesApiUrls.places)
+  @GET(PlacesApiUrls.placeDetails)
   Future<PlaceResponse> getPlaceDetails(@Path() int placeId);
 }

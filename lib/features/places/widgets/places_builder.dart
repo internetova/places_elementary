@@ -8,11 +8,13 @@ typedef FutureVoidCallback = Future<void> Function();
 class PlacesBuilder extends StatelessWidget {
   final List<Place> data;
   final FutureVoidCallback refreshPlaces;
+  final ValueChanged<Place> goPlaceDetails;
 
   const PlacesBuilder({
     Key? key,
     required this.data,
     required this.refreshPlaces,
+    required this.goPlaceDetails,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class PlacesBuilder extends StatelessWidget {
           ),
           child: PlaceCard(
             place: data[index],
+            goPlaceDetails: goPlaceDetails,
           ),
         ),
         itemCount: data.length,

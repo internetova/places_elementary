@@ -12,12 +12,14 @@ class FavoritesBuilder extends StatelessWidget {
   final List<Favorite> data;
   final FavoriteType favoriteType;
   final ValueChanged<Place> removeFromFavorites;
+  final ValueChanged<Place> goPlaceDetails;
 
   const FavoritesBuilder({
     Key? key,
     required this.data,
     required this.favoriteType,
     required this.removeFromFavorites,
+    required this.goPlaceDetails,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class FavoritesBuilder extends StatelessWidget {
             itemBuilder: (_, index) => DismissibleFavoriteCard(
               favorite: data[index],
               removeFromFavorites: removeFromFavorites,
+              goPlaceDetails: goPlaceDetails,
             ),
             itemCount: data.length,
           )

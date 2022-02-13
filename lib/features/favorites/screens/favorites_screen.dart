@@ -26,6 +26,7 @@ class FavoritesScreen extends ElementaryWidget<IFavoritesScreenWidgetModel> {
               data: data!,
               favoriteType: FavoriteType.planned,
               removeFromFavorites: wm.removeFavorite,
+              goPlaceDetails: wm.goPlaceDetailsScreen,
             ),
           ),
           EntityStateNotifierBuilder<List<Favorite>>(
@@ -34,6 +35,7 @@ class FavoritesScreen extends ElementaryWidget<IFavoritesScreenWidgetModel> {
               data: data!,
               favoriteType: FavoriteType.visited,
               removeFromFavorites: wm.removeFavorite,
+              goPlaceDetails: wm.goPlaceDetailsScreen,
             ),
           ),
         ],

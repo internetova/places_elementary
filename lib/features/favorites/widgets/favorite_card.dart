@@ -5,14 +5,17 @@ import 'package:places_elementary/features/common/widgets/for_card/card_image_pr
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/favorites/widgets/for_card/card_actions_favorite.dart';
 import 'package:places_elementary/features/favorites/widgets/for_card/card_content_favorite.dart';
+import 'package:places_elementary/features/places/domain/entity/place.dart';
 
 /// Карточка избранного места
 class FavoriteCard extends StatelessWidget {
   final Favorite favorite;
+  final ValueChanged<Place> goPlaceDetails;
 
   const FavoriteCard({
     Key? key,
     required this.favorite,
+    required this.goPlaceDetails,
   }) : super(key: key);
 
   @override
@@ -49,9 +52,7 @@ class FavoriteCard extends StatelessWidget {
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () {
-                    debugPrint('--------Клик по карточке');
-                  },
+                  onTap: () => goPlaceDetails(favorite.place),
                 ),
               ),
             ),

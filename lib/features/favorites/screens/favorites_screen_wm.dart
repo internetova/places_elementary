@@ -5,6 +5,8 @@ import 'package:places_elementary/features/common/service/favorites_manager.dart
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/favorites/screens/favorites_screen.dart';
 import 'package:places_elementary/features/favorites/screens/favorites_screen_model.dart';
+import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +18,8 @@ abstract class IFavoritesScreenWidgetModel extends IWidgetModel {
   ListenableState<EntityState<List<Favorite>>> get visitedPlacesState;
 
   void removeFavorite(Place place);
+
+  void goPlaceDetailsScreen(Place place);
 }
 
 FavoritesScreenWidgetModel defaultFavoritesScreenWidgetModelFactory(BuildContext context) {
@@ -26,8 +30,9 @@ FavoritesScreenWidgetModel defaultFavoritesScreenWidgetModelFactory(BuildContext
     appDependencies.favoritesManager,
   );
   final favoritesManager = appDependencies.favoritesManager;
+  final coordinator = appDependencies.coordinator;
 
-  return FavoritesScreenWidgetModel(model, favoritesManager);
+  return FavoritesScreenWidgetModel(model, favoritesManager, coordinator);
 }
 
 /// Default widget model for FavoritesScreenWidget
@@ -37,6 +42,7 @@ class FavoritesScreenWidgetModel extends WidgetModel<FavoritesScreen, FavoritesS
   late final TabController _tabController;
   final _plannedPlacesState = EntityStateNotifier<List<Favorite>>();
   final _visitedPlacesState = EntityStateNotifier<List<Favorite>>();
+  final Coordinator _coordinator;
 
   final FavoritesManager _favoritesManager;
 
@@ -51,7 +57,11 @@ class FavoritesScreenWidgetModel extends WidgetModel<FavoritesScreen, FavoritesS
   @override
   ListenableState<EntityState<List<Favorite>>> get visitedPlacesState => _visitedPlacesState;
 
-  FavoritesScreenWidgetModel(FavoritesScreenModel model, this._favoritesManager) : super(model);
+  FavoritesScreenWidgetModel(
+    FavoritesScreenModel model,
+    this._favoritesManager,
+    this._coordinator,
+  ) : super(model);
 
   @override
   void initWidgetModel() {
@@ -69,6 +79,8 @@ class FavoritesScreenWidgetModel extends WidgetModel<FavoritesScreen, FavoritesS
         getVisitedPlaces();
       }
     });
+
+    getVisitedPlaces();
   }
 
   @override
@@ -80,6 +92,18 @@ class FavoritesScreenWidgetModel extends WidgetModel<FavoritesScreen, FavoritesS
   @override
   void removeFavorite(Place place) {
     model.removeFavorites(place);
+  }
+
+  /// Перейти на детальный экран места
+  @override
+  void goPlaceDetailsScreen(Place place) {
+    _coordinator.navigate(
+      context,
+      PlaceDetailsCoordinate.placeDetailsScreen,
+      arguments: {
+        'place': place,
+      },
+    );
   }
 
   void getPlannedPlaces() {

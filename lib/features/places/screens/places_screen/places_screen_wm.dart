@@ -77,7 +77,6 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
       arguments: {
         'place': place,
       },
-      replaceRootCoordinate: true,
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
+import 'package:places_elementary/features/common/service/favorites_manager.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
@@ -9,13 +10,14 @@ import 'package:places_elementary/features/places/screens/place_details_screen/p
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_screen.dart';
 import 'package:provider/provider.dart';
 
-
 abstract class IPlaceDetailsWidgetModel extends IWidgetModel {
   ListenableState<EntityState<Place>> get placeDetailsState;
 
   ListenableState<Favorite?> get favoriteState;
 
   void goBack();
+
+  void buildRoute();
 }
 
 PlaceDetailsWidgetModel defaultPlaceDetailsWidgetModelFactory(BuildContext context) {
@@ -26,8 +28,9 @@ PlaceDetailsWidgetModel defaultPlaceDetailsWidgetModelFactory(BuildContext conte
     appDependencies.favoritesService,
   );
   final coordinator = appDependencies.coordinator;
+  final favoritesManager = appDependencies.favoritesManager;
 
-  return PlaceDetailsWidgetModel(model, coordinator);
+  return PlaceDetailsWidgetModel(model, coordinator, favoritesManager);
 }
 
 /// Default widget model for PlaceDetailsScreen
@@ -35,8 +38,12 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
     implements IPlaceDetailsWidgetModel {
   final Coordinator _coordinator;
   late final EntityStateNotifier<Place> _placeDetailsState;
-  late final StateNotifier<Favorite?> _favoriteState;
   late final Place _place;
+  final _favoriteState = StateNotifier<Favorite?>();
+
+  final FavoritesManager _favoritesManager;
+
+  ListenableState<int> get lastDetailsChangedState => _favoritesManager.lastDetailsChangedState;
 
   @override
   ListenableState<EntityState<Place>> get placeDetailsState => _placeDetailsState;
@@ -44,13 +51,19 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
   @override
   ListenableState<Favorite?> get favoriteState => _favoriteState;
 
-  PlaceDetailsWidgetModel(PlaceDetailsModel model, this._coordinator) : super(model);
+  PlaceDetailsWidgetModel(
+    PlaceDetailsModel model,
+    this._coordinator,
+    this._favoritesManager,
+  ) : super(model);
 
   @override
   void initWidgetModel() {
     super.initWidgetModel();
 
     _init();
+
+    lastDetailsChangedState.addListener(_updateScheduleButton);
   }
 
   /// Вернуться назад
@@ -63,16 +76,30 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
     );
   }
 
+  /// Построить маршрут
+  @override
+  void buildRoute() {
+    debugPrint('-------- Открываем карту с координатами места ${_place.id}');
+  }
+
   Future<void> _init() async {
     _place = widget.place;
     _placeDetailsState = EntityStateNotifier<Place>()..loading();
-    _favoriteState = StateNotifier<Favorite>()..accept(model.getFavorite(_place.id));
 
     try {
       final place = await model.getPlaceDetails(_place.id);
       _placeDetailsState.content(place);
+
+      final favorite = model.getFavorite(_place.id);
+      _favoriteState.accept(favorite);
     } on Exception catch (e) {
       _placeDetailsState.error(e);
     }
+  }
+
+  /// Обновить кнопку запланировать
+  void _updateScheduleButton() {
+    final favorite = model.getFavorite(_place.id);
+    _favoriteState.accept(favorite);
   }
 }

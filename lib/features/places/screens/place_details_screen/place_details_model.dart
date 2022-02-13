@@ -18,15 +18,6 @@ class PlaceDetailsModel extends ElementaryModel {
   /// Получить место по id
   Future<Place> getPlaceDetails(int placeId) => _placesService.getPlaceDetails(placeId);
 
-  /// Место избранное?
-  bool isFavorite(Place place) => _placesService.isFavorite(place);
-
   /// Получить избранное место
-  Favorite getFavorite(int id) => _favoritesService.getFavorite(id);
-
-  /// Удалить из избранных
-  void removeFavorites(Place place) => _favoritesService.removeFavorites(place);
-
-  /// Установить дату и время посещения места
-  void setReminder(Favorite favorite) => _favoritesService.setReminder(favorite);
+  Favorite? getFavorite(int id) => _favoritesService.getFavorite(id);
 }

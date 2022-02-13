@@ -30,6 +30,8 @@ class PlaceDetailsScreen extends ElementaryWidget<IPlaceDetailsWidgetModel> {
         return PlaceDetailsBuilder(
           place: data!,
           favoriteState: wm.favoriteState,
+          buildRoute: wm.buildRoute,
+          goBack: wm.goBack,
         );
       },
     );

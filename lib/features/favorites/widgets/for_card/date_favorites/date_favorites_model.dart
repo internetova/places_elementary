@@ -13,5 +13,5 @@ class DateFavoritesModel extends ElementaryModel {
 
   /// Получить место
   /// После установки даты или ее изменения надо будет обновить строку с датой
-  Favorite getFavorite(int id) => favoritesService.getFavorite(id);
+  Favorite? getFavorite(int id) => favoritesService.getFavorite(id);
 }

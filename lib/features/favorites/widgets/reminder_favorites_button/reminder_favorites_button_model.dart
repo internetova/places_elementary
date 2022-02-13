@@ -26,5 +26,5 @@ class ReminderFavoritesButtonModel extends ElementaryModel {
 
   /// Получить место
   /// После установки даты или ее изменения надо будет получить новую дату из базы данных
-  Favorite getFavorite(int id) => favoritesService.getFavorite(id);
+  Favorite? getFavorite(int id) => favoritesService.getFavorite(id);
 }

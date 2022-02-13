@@ -69,9 +69,9 @@ class DateFavoritesWidgetModel extends WidgetModel<DateFavoritesWidget, DateFavo
   }
 
   void updateDate() {
-    if (changedDateState.value != null && changedDateState.value == _favorite.place.id) {
+    if (changedDateState.value == _favorite.place.id) {
       final newFavorite = model.getFavorite(changedDateState.value!);
-      _dateState.accept(newFavorite.date);
+      _dateState.accept(newFavorite?.date);
     }
   }
 }

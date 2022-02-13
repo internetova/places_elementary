@@ -43,17 +43,17 @@ class ReminderFavoritesButtonWidgetModel
   Future<void> setReminder() async {
     final fav = model.getFavorite(_favorite.place.id);
 
-    final initialDate = fav.date != null
+    final initialDate = fav?.date != null
         ? DateTime(
-            fav.date!.year,
+            fav!.date!.year,
             fav.date!.month,
             fav.date!.day,
           )
         : DateTime.now();
 
-    final initialTime = fav.date != null
+    final initialTime = fav?.date != null
         ? TimeOfDay(
-            hour: fav.date!.hour,
+            hour: fav!.date!.hour,
             minute: fav.date!.minute,
           )
         : TimeOfDay.now();

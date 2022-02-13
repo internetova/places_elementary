@@ -17,15 +17,8 @@ class RemoveFavoritesButtonModel extends ElementaryModel {
   /// Удалить из избранных
   void removeFavorites(Place place) {
     favoritesService.removeFavorites(place);
-    _updateScreen(place);
-  }
-
-  /// Обновить экран Избранное
-  void _updateScreen(Place place) {
-    final count = _favoritesManager.favoritesState.value;
-    _favoritesManager.favoritesState.accept(count! + 1);
-
-    /// Для обновления иконки на карточке места на экране Места
-    _favoritesManager.removedState.accept(place.id);
+    _favoritesManager
+      ..updateFavoritesScreen()
+      ..updatePlaceIconOnPlacesScreen(place.id);
   }
 }

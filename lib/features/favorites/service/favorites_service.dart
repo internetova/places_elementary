@@ -23,5 +23,5 @@ class FavoritesService {
   void setReminder(Favorite favorite) => _localStorage.setReminder(favorite);
 
   /// Получить место
-  Favorite getFavorite(int id) => _localStorage.getFavorite(id);
+  Favorite? getFavorite(int id) => _localStorage.getFavorite(id);
 }

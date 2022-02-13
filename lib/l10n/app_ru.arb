@@ -37,5 +37,11 @@
   "error": "Ошибка",
   "errorEmptyHeader": "Пусто",
   "errorEmptyText": "Нет данных для отображения.",
-  "errorSomethingsWrong": "Что-то пошло не так.\nПопробуйте позже."
+  "errorSomethingsWrong": "Что-то пошло не так.\nПопробуйте позже.",
+  "detailsButtonTitleBuildRoute": "ПОСТРОИТЬ МАРШРУТ",
+  "detailsButtonTitleBuildRouteFinish": "ПРОЙДЕНО",
+  "detailsButtonTitleToSchedule": "Запланировать",
+  "detailsButtonTitleToShare": "Поделиться",
+  "detailsButtonTitleAddToFavourites": "В Избранное",
+  "detailsButtonTitleIsFavourites": "В Избранном"
 }

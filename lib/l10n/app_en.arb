@@ -154,5 +154,29 @@
   "errorSomethingsWrong": "Что-то пошло не так.\nПопробуйте позже.",
   "@errorSomethingsWrong": {
     "description": "Текст для неконкретной ошибки"
+  },
+  "detailsButtonTitleBuildRoute": "ПОСТРОИТЬ МАРШРУТ",
+  "@detailsButtonTitleBuildRoute": {
+    "description": "Название кнопки на детальной странице"
+  },
+  "detailsButtonTitleBuildRouteFinish": "ПРОЙДЕНО",
+  "@detailsButtonTitleBuildRouteFinish": {
+    "description": "Название кнопки на детальной странице"
+  },
+  "detailsButtonTitleToSchedule": "Запланировать",
+  "@detailsButtonTitleToSchedule": {
+    "description": "Название кнопки на детальной странице"
+  },
+  "detailsButtonTitleToShare": "Поделиться",
+  "@detailsButtonTitleToShare": {
+    "description": "Название кнопки на детальной странице"
+  },
+  "detailsButtonTitleAddToFavourites": "В Избранное",
+  "@detailsButtonTitleAddToFavourites": {
+    "description": "Название кнопки на детальной странице"
+  },
+  "detailsButtonTitleIsFavourites": "В Избранном",
+  "@detailsButtonTitleIsFavourites": {
+    "description": "Название кнопки на детальной странице"
   }
 }

@@ -9,11 +9,13 @@ import 'package:places_elementary/features/places/domain/entity/place.dart';
 class DismissibleFavoriteCard extends StatelessWidget {
   final Favorite favorite;
   final ValueChanged<Place> removeFromFavorites;
+  final ValueChanged<Place> goPlaceDetails;
 
   const DismissibleFavoriteCard({
     Key? key,
     required this.favorite,
     required this.removeFromFavorites,
+    required this.goPlaceDetails,
   }) : super(key: key);
 
   @override
@@ -34,7 +36,10 @@ class DismissibleFavoriteCard extends StatelessWidget {
               removeFromFavorites(favorite.place);
             },
             direction: DismissDirection.endToStart,
-            child: FavoriteCard(favorite: favorite),
+            child: FavoriteCard(
+              favorite: favorite,
+              goPlaceDetails: goPlaceDetails,
+            ),
           ),
         ],
       ),

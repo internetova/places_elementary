@@ -3,12 +3,12 @@ import 'package:places_elementary/features/common/service/favorites_manager.dart
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/favorites/service/favorites_service.dart';
 
-/// Default Elementary model for ReminderFavoritesButton module
-class ReminderFavoritesButtonModel extends ElementaryModel {
+/// Default Elementary model for DetailsScheduleButton module
+class DetailsPlanButtonModel extends ElementaryModel {
   final FavoritesService favoritesService;
   final FavoritesManager _favoritesManager;
 
-  ReminderFavoritesButtonModel(
+  DetailsPlanButtonModel(
     ErrorHandler errorHandler,
     this.favoritesService,
     this._favoritesManager,
@@ -18,10 +18,9 @@ class ReminderFavoritesButtonModel extends ElementaryModel {
   void setReminder(Favorite favorite) {
     favoritesService.setReminder(favorite);
 
-    _favoritesManager.changedDateState.accept(favorite.place.id);
-
-    final count = _favoritesManager.needUpdateDateState.value;
-    _favoritesManager.needUpdateDateState.accept(count! + 1);
+    _favoritesManager
+      ..updateDate(favorite.place.id)
+      ..updateDateOnFavoritesScreen();
   }
 
   /// Получить место

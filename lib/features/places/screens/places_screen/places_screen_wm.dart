@@ -1,6 +1,8 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
+import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/screens/places_screen/places_screen.dart';
 import 'package:places_elementary/features/places/screens/places_screen/places_screen_model.dart';
@@ -13,21 +15,24 @@ abstract class IPlacesScreenWidgetModel extends IWidgetModel {
 
   Future<void> refreshPlaces();
 
+  void goPlaceDetailsScreen(Place place);
+
   void goTop();
 }
 
 PlacesScreenWidgetModel defaultPlacesScreenWidgetModelFactory(BuildContext context) {
   final appDependencies = context.read<IAppScope>();
   final model = PlacesScreenModel(appDependencies.errorHandler, appDependencies.placesService);
+  final coordinator = appDependencies.coordinator;
 
-  return PlacesScreenWidgetModel(model);
+  return PlacesScreenWidgetModel(model, coordinator);
 }
 
 /// Default widget model for PlacesScreen
 class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenModel>
     implements IPlacesScreenWidgetModel {
+  final Coordinator _coordinator;
   final _placesState = EntityStateNotifier<List<Place>>();
-
   final _scrollController = ScrollController();
 
   @override
@@ -36,7 +41,10 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
   @override
   ScrollController get scrollController => _scrollController;
 
-  PlacesScreenWidgetModel(PlacesScreenModel model) : super(model);
+  PlacesScreenWidgetModel(
+    PlacesScreenModel model,
+    this._coordinator,
+  ) : super(model);
 
   @override
   void initWidgetModel() {
@@ -59,6 +67,18 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
   /// Перейти наверх
   @override
   void goTop() => _scrollController.jumpTo(0);
+
+  /// Перейти на детальный экран места
+  @override
+  void goPlaceDetailsScreen(Place place) {
+    _coordinator.navigate(
+      context,
+      PlaceDetailsCoordinate.placeDetailsScreen,
+      arguments: {
+        'place': place,
+      },
+    );
+  }
 
   Future<void> _init() async {
     _placesState.loading();

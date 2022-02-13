@@ -2,6 +2,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/common/service/favorites_manager.dart';
+import 'package:places_elementary/features/places/domain/entity/favorites_button_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_model.dart';
 import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
@@ -20,8 +21,9 @@ FavoritesButtonWidgetModel defaultFavoritesButtonWidgetModelFactory(BuildContext
     appDependencies.placesService,
     appDependencies.favoritesManager,
   );
+  final favoritesManager = appDependencies.favoritesManager;
 
-  return FavoritesButtonWidgetModel(model, appDependencies.favoritesManager);
+  return FavoritesButtonWidgetModel(model, favoritesManager);
 }
 
 /// Default widget model for FavoritesButtonWidget
@@ -30,16 +32,19 @@ class FavoritesButtonWidgetModel extends WidgetModel<FavoritesButtonWidget, Favo
     implements IFavoritesButtonWidgetModel {
   late final StateNotifier<bool> _isFavState;
   late final Place _place;
+  late final FavoritesButtonType _buttonType;
 
   final FavoritesManager _favoritesManager;
 
-  /// id места, которое только что удалили на экране Избранное
-  ListenableState<int?> get removedState => _favoritesManager.removedState;
+  ListenableState<int?> get lastPlaceChangedState => _favoritesManager.lastPlaceChangedState;
 
   @override
   ListenableState<bool> get isFavState => _isFavState;
 
-  FavoritesButtonWidgetModel(FavoritesButtonModel model, this._favoritesManager) : super(model);
+  FavoritesButtonWidgetModel(
+    FavoritesButtonModel model,
+    this._favoritesManager,
+  ) : super(model);
 
   @override
   void initWidgetModel() {
@@ -47,7 +52,7 @@ class FavoritesButtonWidgetModel extends WidgetModel<FavoritesButtonWidget, Favo
 
     _init();
 
-    removedState.addListener(_changeButtonIcon);
+    lastPlaceChangedState.addListener(_updateIcon);
   }
 
   @override
@@ -56,10 +61,10 @@ class FavoritesButtonWidgetModel extends WidgetModel<FavoritesButtonWidget, Favo
       final isFav = _isFavState.value;
 
       if (isFav!) {
-        model.removeFavorites(_place);
+        model.removeFavorites(_place, _buttonType);
         _isFavState.accept(false);
       } else {
-        model.addFavorites(_place);
+        model.addFavorites(_place, _buttonType);
         _isFavState.accept(true);
       }
     }
@@ -67,14 +72,16 @@ class FavoritesButtonWidgetModel extends WidgetModel<FavoritesButtonWidget, Favo
 
   void _init() {
     _place = widget.place;
+    _buttonType = widget.buttonType;
+
     final isFav = model.isFavorite(_place);
     _isFavState = StateNotifier<bool>(initValue: isFav);
   }
 
-  /// Если место удалили из избранного, то изменить иконку на кнопке на актуальную
-  void _changeButtonIcon() {
-    if (removedState.value != null && removedState.value == _place.id) {
-      _isFavState.accept(false);
+  void _updateIcon() {
+    if (lastPlaceChangedState.value == _place.id) {
+      final isFav = model.isFavorite(_place);
+      _isFavState.accept(isFav);
     }
   }
 }

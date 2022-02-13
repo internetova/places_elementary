@@ -36,6 +36,10 @@ class ObjectboxStorage implements ILocalStorage {
   /// Добавить в избранные
   @override
   void addFavorites(Place place) {
+    final isFav = isFavorite(place);
+
+    if (isFav) return;
+
     favoritesBox.put(
       FavoriteDb(
         placeId: place.id,
@@ -87,17 +91,17 @@ class ObjectboxStorage implements ILocalStorage {
 
   /// Получить место
   @override
-  Favorite getFavorite(int id) {
+  Favorite? getFavorite(int id) {
     final query = favoritesBox
         .query(
       FavoriteDb_.placeId.equals(id),
     )
         .build();
 
-    final place = query.findFirst() as FavoriteDb;
+    final place = query.findFirst() as FavoriteDb?;
     query.close();
 
-    return mapFavorite(place);
+    return place != null ? mapFavorite(place) : null;
   }
 
   void init() {

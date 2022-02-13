@@ -3,45 +3,66 @@ import 'package:flutter/material.dart';
 import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
-import 'package:places_elementary/features/favorites/widgets/reminder_favorites_button/reminder_favorites_button.dart';
-import 'package:places_elementary/features/favorites/widgets/reminder_favorites_button/reminder_favorites_button_model.dart';
+import 'package:places_elementary/features/places/widgets/details_schedule_button/details_plan_button_model.dart';
+import 'package:places_elementary/features/places/widgets/details_schedule_button/details_plan_button_widget.dart';
 import 'package:provider/provider.dart';
 
-abstract class IReminderFavoritesButtonWidgetModel extends IWidgetModel {
+abstract class IDetailsPlanButtonWidgetModel extends IWidgetModel {
+  ListenableState<Favorite?> get favoriteState;
+
+  ListenableState<DateTime?> get dateTimeState;
+
   Future<void> setReminder();
 }
 
-ReminderFavoritesButtonWidgetModel defaultReminderFavoritesButtonWidgetModelFactory(
+DetailsPlanButtonWidgetModel defaultDetailsPlanButtonWidgetModelFactory(
   BuildContext context,
 ) {
   final appDependencies = context.read<IAppScope>();
-  final model = ReminderFavoritesButtonModel(
+  final model = DetailsPlanButtonModel(
     appDependencies.errorHandler,
     appDependencies.favoritesService,
     appDependencies.favoritesManager,
   );
 
-  return ReminderFavoritesButtonWidgetModel(model);
+  return DetailsPlanButtonWidgetModel(model);
 }
 
-/// Default widget model for ReminderFavoritesButtonWidget
-class ReminderFavoritesButtonWidgetModel
-    extends WidgetModel<ReminderFavoritesButton, ReminderFavoritesButtonModel>
-    implements IReminderFavoritesButtonWidgetModel {
-  late final Favorite _favorite;
+/// Default widget model for DetailsScheduleButtonWidget
+class DetailsPlanButtonWidgetModel
+    extends WidgetModel<DetailsPlanButtonWidget, DetailsPlanButtonModel>
+    implements IDetailsPlanButtonWidgetModel {
+  late final Favorite? _favorite;
+  final _favoriteState = StateNotifier<Favorite?>();
+  final _dateTimeState = StateNotifier<DateTime?>();
 
-  ReminderFavoritesButtonWidgetModel(ReminderFavoritesButtonModel model) : super(model);
+  @override
+  ListenableState<Favorite?> get favoriteState => _favoriteState;
+
+  @override
+  ListenableState<DateTime?> get dateTimeState => _dateTimeState;
+
+  DetailsPlanButtonWidgetModel(
+    DetailsPlanButtonModel model,
+  ) : super(model);
 
   @override
   void initWidgetModel() {
     super.initWidgetModel();
 
     _favorite = widget.favorite;
+    _favoriteState.accept(_favorite);
+
+    if (_favorite != null) {
+      final date = _favorite!.date;
+
+      _dateTimeState.accept(date);
+    }
   }
 
   @override
   Future<void> setReminder() async {
-    final fav = model.getFavorite(_favorite.place.id);
+    final fav = model.getFavorite(_favorite!.place.id);
 
     final initialDate = fav?.date != null
         ? DateTime(
@@ -73,13 +94,14 @@ class ReminderFavoritesButtonWidgetModel
     );
 
     final favorite = Favorite(
-      id: _favorite.id,
-      place: _favorite.place,
-      favoriteType: _favorite.favoriteType,
+      id: _favorite!.id,
+      place: _favorite!.place,
+      favoriteType: _favorite!.favoriteType,
       date: newDateTime,
     );
 
     model.setReminder(favorite);
+    _dateTimeState.accept(newDateTime);
   }
 
   /// Установить дату о запланированном посещении места

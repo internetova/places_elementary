@@ -20,5 +20,5 @@ abstract class ILocalStorage {
   List<Favorite> getFavoritesPlaces(FavoriteType favoriteType);
 
   /// Получить место
-  Favorite getFavorite(int id);
+  Favorite? getFavorite(int id);
 }

@@ -13,6 +13,7 @@ import 'package:places_elementary/features/navigation/domain/delegate/app_router
 import 'package:places_elementary/features/navigation/domain/parser/app_route_information_parses.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/onboarding/onboarding_coordinate.dart';
+import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
 
 /// App widget.
 class App extends StatefulWidget {
@@ -78,7 +79,8 @@ class _AppState extends State<App> {
     coordinator
       ..initialCoordinate = AppCoordinate.initial
       ..registerCoordinates('/', appCoordinates)
-      ..registerCoordinates('/onboarding/', onboardingCoordinates);
+      ..registerCoordinates('/onboarding/', onboardingCoordinates)
+      ..registerCoordinates('/placeDetails/', placeDetailsCoordinates);
   }
 
   void _rebuildApplication() {

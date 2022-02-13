@@ -38,6 +38,7 @@ class PlacesScreen extends ElementaryWidget<IPlacesScreenWidgetModel> {
               return PlacesBuilder(
                 data: data ?? [],
                 refreshPlaces: wm.refreshPlaces,
+                goPlaceDetails: wm.goPlaceDetailsScreen,
               );
             },
           ),

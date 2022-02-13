@@ -9,10 +9,12 @@ import 'package:places_elementary/features/places/widgets/for_card/card_content.
 /// Карточка интересного места для главного списка мест
 class PlaceCard extends StatelessWidget {
   final Place place;
+  final ValueChanged<Place> goPlaceDetails;
 
   const PlaceCard({
     Key? key,
     required this.place,
+    required this.goPlaceDetails,
   }) : super(key: key);
 
   @override
@@ -47,9 +49,7 @@ class PlaceCard extends StatelessWidget {
               child: Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () {
-                    debugPrint('--------Клик по карточке');
-                  },
+                  onTap: () => goPlaceDetails(place),
                 ),
               ),
             ),

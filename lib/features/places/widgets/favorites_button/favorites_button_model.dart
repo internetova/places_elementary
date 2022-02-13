@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:places_elementary/features/common/service/favorites_manager.dart';
+import 'package:places_elementary/features/places/domain/entity/favorites_button_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/service/places_service.dart';
 
@@ -18,22 +19,26 @@ class FavoritesButtonModel extends ElementaryModel {
   bool isFavorite(Place place) => placesService.isFavorite(place);
 
   /// Добавить в избранные
-  void addFavorites(Place place) {
+  void addFavorites(Place place, FavoritesButtonType buttonType) {
     placesService.addFavorites(place);
-    _updateScreen();
+    _updateIcon(place, buttonType);
+    _favoritesManager.updateFavoritesScreen();
   }
 
   /// Удалить из избранных
-  void removeFavorites(Place place) {
+  void removeFavorites(Place place, FavoritesButtonType buttonType) {
     placesService.removeFavorites(place);
-    _updateScreen();
+    _updateIcon(place, buttonType);
+    _favoritesManager.updateFavoritesScreen();
   }
 
-  /// Обновить экран Избранные
-  /// При добавлении / удалении места в избранное с экрана Места роли не играет какие именно это
-  /// были места, поэтому просто меняем счетчик кликов для обновления мест из локальной базы данных
-  void _updateScreen() {
-    final count = _favoritesManager.favoritesState.value;
-    _favoritesManager.favoritesState.accept(count! + 1);
+  /// Если изменили статус места на экране PlaceDetailsScreen, то на PlacesScreen меняем иконку
+  /// этого места на актуальную, т.к. при возвращении не ребилдим экран
+  void _updateIcon(Place place, FavoritesButtonType buttonType) {
+    if (buttonType == FavoritesButtonType.big) {
+      _favoritesManager
+        ..updatePlaceIconOnPlacesScreen(place.id)
+        ..updateDetails();
+    }
   }
 }

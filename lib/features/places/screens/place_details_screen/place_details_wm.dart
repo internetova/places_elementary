@@ -1,10 +1,10 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/common/service/favorites_manager.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_model.dart';
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_screen.dart';
@@ -18,6 +18,10 @@ abstract class IPlaceDetailsWidgetModel extends IWidgetModel {
   void goBack();
 
   void buildRoute();
+
+  void goPlaceDetails(Place place);
+
+  void closeAll();
 }
 
 PlaceDetailsWidgetModel defaultPlaceDetailsWidgetModelFactory(BuildContext context) {
@@ -69,17 +73,31 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
   /// Вернуться назад
   @override
   void goBack() {
-    _coordinator.navigate(
-      context,
-      AppCoordinate.tabsScreen,
-      replaceRootCoordinate: true,
-    );
+    _coordinator.pop();
+  }
+
+  /// Закрыть все страницы с одинаковым путем
+  @override
+  void closeAll() {
+    _coordinator.popUntilRoot();
   }
 
   /// Построить маршрут
   @override
   void buildRoute() {
     debugPrint('-------- Открываем карту с координатами места ${_place.id}');
+  }
+
+  /// Перейти на детальный экран места
+  @override
+  void goPlaceDetails(Place place) {
+    _coordinator.navigate(
+      context,
+      PlaceDetailsCoordinate.placeDetailsScreen,
+      arguments: {
+        'place': place,
+      },
+    );
   }
 
   Future<void> _init() async {

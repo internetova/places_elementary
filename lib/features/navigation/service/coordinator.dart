@@ -118,7 +118,7 @@ class Coordinator extends ChangeNotifier {
         );
 
     return MaterialPage<void>(
-      key: ValueKey(path),
+      key: arguments != null ? ObjectKey(arguments) : ValueKey(path),
       name: path,
       child: Scaffold(
         body: body,

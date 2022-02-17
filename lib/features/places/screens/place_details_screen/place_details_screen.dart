@@ -33,6 +33,7 @@ class PlaceDetailsScreen extends ElementaryWidget<IPlaceDetailsWidgetModel> {
           buildRoute: wm.buildRoute,
           goBack: wm.goBack,
           closeAll: wm.closeAll,
+          goUniqueScreen: wm.goUniqueScreen,
           goPlaceDetails: wm.goPlaceDetails,
         );
       },

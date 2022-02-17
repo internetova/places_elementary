@@ -22,6 +22,8 @@ abstract class IPlaceDetailsWidgetModel extends IWidgetModel {
   void goPlaceDetails(Place place);
 
   void closeAll();
+
+  void goUniqueScreen();
 }
 
 PlaceDetailsWidgetModel defaultPlaceDetailsWidgetModelFactory(BuildContext context) {
@@ -97,6 +99,14 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
       arguments: {
         'place': place,
       },
+    );
+  }
+
+  @override
+  void goUniqueScreen() {
+    _coordinator.navigate(
+      context,
+      PlaceDetailsCoordinate.uniqueScreen,
     );
   }
 

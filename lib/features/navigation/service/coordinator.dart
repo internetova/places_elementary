@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/init/screens/splash_screen/splash_screen.dart';
 import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
+import 'package:places_elementary/features/navigation/service/coordinate_key.dart';
 
 /// Class that coordinates navigation for the whole app and provides
 /// methods for navigation.
@@ -118,7 +119,9 @@ class Coordinator extends ChangeNotifier {
         );
 
     return MaterialPage<void>(
-      key: arguments != null ? ObjectKey(arguments) : ValueKey(path),
+      key: coordinate.isUniqueCoordinate
+          ? ValueKey(path)
+          : CoordinateKey(arguments: arguments, path: path),
       name: path,
       child: Scaffold(
         body: body,

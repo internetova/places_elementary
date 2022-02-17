@@ -5,10 +5,11 @@ typedef CoordinateBuilder = Widget Function(BuildContext context, Object? data);
 
 /// Basic coordinate representation.
 abstract class Coordinate {
-  final String _value;
+  final bool isUniqueCoordinate;
+  final String value;
 
-  const Coordinate._(this._value);
+  const Coordinate({required this.value, required this.isUniqueCoordinate});
 
   @override
-  String toString() => _value;
+  String toString() => '$value isUnique: $isUniqueCoordinate';
 }

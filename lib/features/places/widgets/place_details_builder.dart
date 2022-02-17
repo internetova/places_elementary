@@ -18,6 +18,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
   final ListenableState<Favorite?> favoriteState;
   final VoidCallback goBack;
   final VoidCallback closeAll;
+  final VoidCallback goUniqueScreen;
   final VoidCallback buildRoute;
   final ValueChanged<Place> goPlaceDetails;
 
@@ -28,6 +29,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
     required this.buildRoute,
     required this.goBack,
     required this.closeAll,
+    required this.goUniqueScreen,
     required this.goPlaceDetails,
   }) : super(key: key);
 
@@ -92,6 +94,13 @@ class PlaceDetailsBuilder extends StatelessWidget {
               TestCoordinatorScreen(goPlaceDetails: goPlaceDetails),
               AppSizes.sizedBoxH24,
               const Divider(),
+              AppSizes.sizedBoxH24,
+              ButtonText(
+                title: 'На уникальный экран!',
+                width: 200,
+                height: 40,
+                onPressed: goUniqueScreen,
+              ),
             ],
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:places_elementary/features/common/service/favorites_manager.dart
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
+import 'package:places_elementary/features/places/coordinates/unregistered_coordinate.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_model.dart';
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_screen.dart';
@@ -24,6 +25,8 @@ abstract class IPlaceDetailsWidgetModel extends IWidgetModel {
   void closeAll();
 
   void goUniqueScreen();
+
+  void goUnregisteredScreen();
 }
 
 PlaceDetailsWidgetModel defaultPlaceDetailsWidgetModelFactory(BuildContext context) {
@@ -102,11 +105,21 @@ class PlaceDetailsWidgetModel extends WidgetModel<PlaceDetailsScreen, PlaceDetai
     );
   }
 
+  /// Перейти на уникальный экран
   @override
   void goUniqueScreen() {
     _coordinator.navigate(
       context,
       PlaceDetailsCoordinate.uniqueScreen,
+    );
+  }
+
+  /// Перейти на незарегистрированный экран
+  @override
+  void goUnregisteredScreen() {
+    _coordinator.navigate(
+      context,
+      UnregisteredCoordinate.unregisteredScreen,
     );
   }
 

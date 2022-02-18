@@ -19,6 +19,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
   final VoidCallback goBack;
   final VoidCallback closeAll;
   final VoidCallback goUniqueScreen;
+  final VoidCallback goUnregisteredScreen;
   final VoidCallback buildRoute;
   final ValueChanged<Place> goPlaceDetails;
 
@@ -30,6 +31,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
     required this.goBack,
     required this.closeAll,
     required this.goUniqueScreen,
+    required this.goUnregisteredScreen,
     required this.goPlaceDetails,
   }) : super(key: key);
 
@@ -100,6 +102,13 @@ class PlaceDetailsBuilder extends StatelessWidget {
                 width: 200,
                 height: 40,
                 onPressed: goUniqueScreen,
+              ),
+              AppSizes.sizedBoxH24,
+              ButtonText(
+                title: 'На незарегистрированный экран!',
+                width: 280,
+                height: 40,
+                onPressed: goUnregisteredScreen,
               ),
             ],
           ),

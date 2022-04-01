@@ -4,19 +4,20 @@ import 'package:places_elementary/features/init/screens/splash_screen/splash_scr
 import 'package:places_elementary/features/navigation/domain/entity/coordinate.dart';
 
 /// A set of routes for the entire app.
-class AppCoordinate implements Coordinate {
-  static const initScreen = AppCoordinate._('splash_screen');
-  static const debugScreen = AppCoordinate._('debug_screen');
-  static const tabsScreen = AppCoordinate._('tabs_screen');
+class AppCoordinate extends Coordinate {
+  static const initScreen = AppCoordinate._('splash_screen', true);
+  static const debugScreen = AppCoordinate._('debug_screen', true);
+  static const tabsScreen = AppCoordinate._('tabs_screen', true);
 
   static const initial = initScreen;
 
-  final String _value;
-
-  const AppCoordinate._(this._value);
-
-  @override
-  String toString() => _value;
+  const AppCoordinate._(
+    String value,
+    bool isUnique,
+  ) : super(
+          value: value,
+          isUnique: isUnique,
+        );
 }
 
 /// List of main routes of the app.

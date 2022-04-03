@@ -2,6 +2,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:places_elementary/assets/res/app_assets.dart';
+import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/app/app_coordinate.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
@@ -25,6 +26,10 @@ abstract class IOnboardingScreenWidgetModel extends IWidgetModel {
   Animation<double> get buttonSkipAnimation;
 
   void switchPage(int pageIndex);
+
+  Color getColorIndicator(int indicatorIndex);
+
+  double getWidthIndicator(int indicatorIndex);
 
   void skipOnboarding();
 
@@ -139,9 +144,23 @@ class OnboardingScreenWidgetModel extends WidgetModel<OnboardingScreen, Onboardi
     _currentPageState.accept(pageIndex);
   }
 
+  /// Цвет индикатора текущей страницы
+  @override
+  Color getColorIndicator(int indicatorIndex) {
+    return indicatorIndex == _currentPageState.value!
+        ? Theme.of(context).colorScheme.green
+        : Theme.of(context).colorScheme.inactiveBlack;
+  }
+
+  /// Ширина индикатора текущей страницы
+  @override
+  double getWidthIndicator(int indicatorIndex) {
+    return indicatorIndex == _currentPageState.value! ? 24 : 8;
+  }
+
   @override
   void skipOnboarding() {
-    goTabsScreen();
+    _goTabsScreen();
   }
 
   @override
@@ -153,10 +172,10 @@ class OnboardingScreenWidgetModel extends WidgetModel<OnboardingScreen, Onboardi
       model.setOnboardingIsComplete(isComplete: true);
     }
 
-    goTabsScreen();
+    _goTabsScreen();
   }
 
-  void goTabsScreen() {
+  void _goTabsScreen() {
     coordinator.navigate(
       context,
       AppCoordinate.tabsScreen,

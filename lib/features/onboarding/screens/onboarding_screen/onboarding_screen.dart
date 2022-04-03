@@ -32,9 +32,10 @@ class OnboardingScreen extends ElementaryWidget<IOnboardingScreenWidgetModel> {
         ),
         body: OnboardingBody(
           data: wm.data,
-          currentPage: page ?? 0,
           pageController: wm.pageController,
           switchPage: wm.switchPage,
+          getColorIndicator: wm.getColorIndicator,
+          getWidthIndicator: wm.getWidthIndicator,
         ),
         floatingActionButton: ButtonStart(
           data: wm.data,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/places/constants/places_constants.dart';
+import 'package:places_elementary/features/places/domain/entity/card_type.dart';
 import 'package:places_elementary/features/places/domain/entity/favorites_button_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
@@ -17,6 +18,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
   final ListenableState<Favorite?> favoriteState;
   final VoidCallback goBack;
   final VoidCallback buildRoute;
+  final CardType transitionFrom;
 
   const PlaceDetailsBuilder({
     Key? key,
@@ -24,6 +26,7 @@ class PlaceDetailsBuilder extends StatelessWidget {
     required this.favoriteState,
     required this.buildRoute,
     required this.goBack,
+    required this.transitionFrom,
   }) : super(key: key);
 
   @override
@@ -37,7 +40,12 @@ class PlaceDetailsBuilder extends StatelessWidget {
             flexibleSpace: SizedBox(
               width: double.infinity,
               height: PlacesConstants.imageSliderHeight,
-              child: PhotoSliderWidget(place.urls),
+              child: Hero(
+                tag: transitionFrom == CardType.search
+                    ? PlacesConstants.tagFromSearch + place.urls.first
+                    : PlacesConstants.tagFromFavorites + place.urls.first,
+                child: PhotoSliderWidget(place.urls),
+              ),
             ),
           ),
           SliverList(

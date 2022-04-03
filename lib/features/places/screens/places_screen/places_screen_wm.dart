@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
+import 'package:places_elementary/features/places/domain/entity/card_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/screens/places_screen/places_screen.dart';
 import 'package:places_elementary/features/places/screens/places_screen/places_screen_model.dart';
@@ -76,6 +77,7 @@ class PlacesScreenWidgetModel extends WidgetModel<PlacesScreen, PlacesScreenMode
       PlaceDetailsCoordinate.placeDetailsScreen,
       arguments: {
         'place': place,
+        'transitionFrom': CardType.search,
       },
     );
   }

@@ -19,7 +19,7 @@ abstract class IPhotoSliderWidgetModel extends IWidgetModel {
 
   Color getColorIndicator(int indicatorIndex);
 
-  void back();
+  void goBack();
 }
 
 /// Фабрика для создания виджет модели
@@ -67,7 +67,7 @@ class PhotoSliderWidgetModel extends WidgetModel<PhotoSliderWidget, PhotoSliderM
   }
 
   @override
-  void back() {
+  void goBack() {
     Navigator.of(context).pop();
   }
 }

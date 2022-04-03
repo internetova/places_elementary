@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:places_elementary/features/places/domain/entity/card_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/screens/place_details_screen/place_details_wm.dart';
 import 'package:places_elementary/features/places/widgets/place_details_builder.dart';
@@ -9,10 +10,12 @@ import 'package:places_elementary/features/places/widgets/place_details_loader.d
 /// Экран подробности места
 class PlaceDetailsScreen extends ElementaryWidget<IPlaceDetailsWidgetModel> {
   final Place place;
+  final CardType transitionFrom;
 
   const PlaceDetailsScreen({
     Key? key,
     required this.place,
+    required this.transitionFrom,
     WidgetModelFactory wmFactory = defaultPlaceDetailsWidgetModelFactory,
   }) : super(wmFactory, key: key);
 
@@ -32,6 +35,7 @@ class PlaceDetailsScreen extends ElementaryWidget<IPlaceDetailsWidgetModel> {
           favoriteState: wm.favoriteState,
           buildRoute: wm.buildRoute,
           goBack: wm.goBack,
+          transitionFrom: transitionFrom,
         );
       },
     );

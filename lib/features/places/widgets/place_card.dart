@@ -32,9 +32,12 @@ class PlaceCard extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    ImagePreview(
-                      imgUrl: place.urls.first,
-                      height: PlacesConstants.cardImageHeight,
+                    Hero(
+                      tag: PlacesConstants.tagFromSearch + place.urls.first,
+                      child: ImagePreview(
+                        imgUrl: place.urls.first,
+                        height: PlacesConstants.cardImageHeight,
+                      ),
                     ),
                     Positioned(
                       top: AppSizes.paddingStandard,

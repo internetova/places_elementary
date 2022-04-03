@@ -33,9 +33,12 @@ class FavoriteCard extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    ImagePreview(
-                      imgUrl: favorite.place.urls.first,
-                      height: PlacesConstants.cardImageHeight,
+                    Hero(
+                      tag: PlacesConstants.tagFromFavorites + favorite.place.urls.first,
+                      child: ImagePreview(
+                        imgUrl: favorite.place.urls.first,
+                        height: PlacesConstants.cardImageHeight,
+                      ),
                     ),
                     Positioned(
                       top: AppSizes.paddingStandard,

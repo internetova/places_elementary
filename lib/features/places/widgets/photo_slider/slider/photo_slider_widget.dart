@@ -40,7 +40,7 @@ class PhotoSliderWidget extends ElementaryWidget<IPhotoSliderWidgetModel> {
                     backgroundColor: wm.backgroundColorButtonBack,
                     icon: AppAssets.icArrow,
                     iconColor: wm.iconColorButtonBack,
-                    onPressed: wm.back,
+                    onPressed: wm.goBack,
                   ),
                 ),
               ],

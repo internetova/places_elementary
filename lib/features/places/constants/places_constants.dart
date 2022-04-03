@@ -10,5 +10,9 @@ class PlacesConstants {
   static const double imageSliderHeight = 360;
   static const double photoViewingIndicatorHeight = 8;
 
+  /// Для Hero
+  static const String tagFromSearch = 'fromSearch';
+  static const String tagFromFavorites = 'fromFavorites';
+
   PlacesConstants._();
 }

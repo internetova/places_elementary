@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/for_card/card_content_type.dart';
-import 'package:places_elementary/features/common/widgets/for_card/card_image_preview.dart';
+import 'package:places_elementary/features/common/widgets/image_preview/image_preview.dart';
+import 'package:places_elementary/features/places/constants/places_constants.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
 import 'package:places_elementary/features/places/widgets/for_card/card_content.dart';
@@ -31,8 +32,9 @@ class PlaceCard extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    CardImagePreview(
+                    ImagePreview(
                       imgUrl: place.urls.first,
+                      height: PlacesConstants.cardImageHeight,
                     ),
                     Positioned(
                       top: AppSizes.paddingStandard,

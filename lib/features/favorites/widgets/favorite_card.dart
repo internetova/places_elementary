@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/common/widgets/for_card/card_content_type.dart';
-import 'package:places_elementary/features/common/widgets/for_card/card_image_preview.dart';
+import 'package:places_elementary/features/common/widgets/image_preview/image_preview.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
 import 'package:places_elementary/features/favorites/widgets/for_card/card_actions_favorite.dart';
 import 'package:places_elementary/features/favorites/widgets/for_card/card_content_favorite.dart';
+import 'package:places_elementary/features/places/constants/places_constants.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 
 /// Карточка избранного места
@@ -32,8 +33,9 @@ class FavoriteCard extends StatelessWidget {
               children: [
                 Stack(
                   children: [
-                    CardImagePreview(
+                    ImagePreview(
                       imgUrl: favorite.place.urls.first,
+                      height: PlacesConstants.cardImageHeight,
                     ),
                     Positioned(
                       top: AppSizes.paddingStandard,

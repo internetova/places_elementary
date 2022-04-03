@@ -2,9 +2,11 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/common/constants/app_sizes.dart';
 import 'package:places_elementary/features/favorites/domain/entity/favorite.dart';
+import 'package:places_elementary/features/places/constants/places_constants.dart';
 import 'package:places_elementary/features/places/domain/entity/favorites_button_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:places_elementary/features/places/widgets/favorites_button/favorites_button_widget.dart';
+import 'package:places_elementary/features/places/widgets/photo_slider/slider/photo_slider_widget.dart';
 import 'package:places_elementary/features/places/widgets/place_details_content.dart';
 import 'package:places_elementary/features/places/widgets/plan_button_builder.dart';
 import 'package:places_elementary/features/places/widgets/route_button_builder.dart';
@@ -29,21 +31,13 @@ class PlaceDetailsBuilder extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          // TODO(sugina): в следующем пр слайдер с фото
           SliverAppBar(
             automaticallyImplyLeading: false,
-            expandedHeight: 360,
+            expandedHeight: PlacesConstants.imageSliderHeight,
             flexibleSpace: SizedBox(
               width: double.infinity,
-              height: 360,
-              child: ColoredBox(
-                color: Colors.lightBlueAccent,
-                child: IconButton(
-                  onPressed: goBack,
-                  icon: const Icon(Icons.arrow_back),
-                  iconSize: 42,
-                ),
-              ),
+              height: PlacesConstants.imageSliderHeight,
+              child: PhotoSliderWidget(place.urls),
             ),
           ),
           SliverList(

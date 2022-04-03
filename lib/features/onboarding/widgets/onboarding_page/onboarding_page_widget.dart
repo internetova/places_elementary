@@ -17,34 +17,38 @@ class OnboardingPageWidget extends ElementaryWidget<IOnboardingPageWidgetModel> 
 
   @override
   Widget build(IOnboardingPageWidgetModel wm) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ScaleTransition(
-            scale: wm.iconAnimation,
-            child: SvgPicture.asset(
-              itemData.icon,
-              width: 104,
-              height: 104,
-              color: wm.iconColor,
+    return Column(
+      children: [
+        const Spacer(),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ScaleTransition(
+              scale: wm.iconAnimation,
+              child: SvgPicture.asset(
+                itemData.icon,
+                width: 104,
+                height: 104,
+                color: wm.iconColor,
+              ),
             ),
-          ),
-          AppSizes.sizedBoxH40,
-          Text(
-            itemData.title,
-            style: wm.titleStyle,
-            textAlign: TextAlign.center,
-          ),
-          AppSizes.sizedBoxH8,
-          Text(
-            itemData.text,
-            style: wm.textStyle,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 140),
-        ],
-      ),
+            AppSizes.sizedBoxH40,
+            Text(
+              itemData.title,
+              style: wm.titleStyle,
+              textAlign: TextAlign.center,
+            ),
+            AppSizes.sizedBoxH8,
+            Text(
+              itemData.text,
+              style: wm.textStyle,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 140),
+          ],
+        ),
+        const Spacer(),
+      ],
     );
   }
 }

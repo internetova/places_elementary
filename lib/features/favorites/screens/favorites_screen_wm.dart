@@ -7,6 +7,7 @@ import 'package:places_elementary/features/favorites/screens/favorites_screen.da
 import 'package:places_elementary/features/favorites/screens/favorites_screen_model.dart';
 import 'package:places_elementary/features/navigation/service/coordinator.dart';
 import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
+import 'package:places_elementary/features/places/domain/entity/card_type.dart';
 import 'package:places_elementary/features/places/domain/entity/place.dart';
 import 'package:provider/provider.dart';
 
@@ -102,6 +103,7 @@ class FavoritesScreenWidgetModel extends WidgetModel<FavoritesScreen, FavoritesS
       PlaceDetailsCoordinate.placeDetailsScreen,
       arguments: {
         'place': place,
+        'transitionFrom': CardType.planned,
       },
     );
   }

@@ -1,44 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:places_elementary/assets/themes/themes.dart';
 import 'package:places_elementary/features/onboarding/domain/entity/onboarding_item.dart';
+import 'package:places_elementary/util/typedefs.dart';
 
 /// Индикатор страниц
-class PageIndicator extends StatefulWidget {
+class PageIndicator extends StatelessWidget {
   final List<OnboardingItem> data;
-  final int currentPage;
+  final DataValueChanged<int, Color> getColorIndicator;
+  final DataValueChanged<int, double> getWidthIndicator;
 
   const PageIndicator({
     Key? key,
     required this.data,
-    required this.currentPage,
+    required this.getColorIndicator,
+    required this.getWidthIndicator,
   }) : super(key: key);
 
-  @override
-  State<PageIndicator> createState() => _PageIndicatorState();
-}
-
-class _PageIndicatorState extends State<PageIndicator> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: widget.data
+      children: data
           .asMap()
           .map(
             (i, element) => MapEntry(
               i,
               Container(
                 margin: const EdgeInsets.all(4),
-                width: _getWidth(
-                  index: i,
-                  currentIndex: widget.currentPage,
-                ),
+                width: getWidthIndicator(i),
                 height: 8,
                 decoration: BoxDecoration(
-                  color: _getColor(
-                    index: i,
-                    currentIndex: widget.currentPage,
-                  ),
+                  color: getColorIndicator(i),
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
@@ -47,23 +38,5 @@ class _PageIndicatorState extends State<PageIndicator> {
           .values
           .toList(),
     );
-  }
-
-  /// цвет индикатора текущей страницы
-  Color _getColor({
-    required int index,
-    required int currentIndex,
-  }) {
-    return index == currentIndex
-        ? Theme.of(context).colorScheme.green
-        : Theme.of(context).colorScheme.inactiveBlack;
-  }
-
-  /// ширина индикатора текущей страницы
-  double _getWidth({
-    required int index,
-    required int currentIndex,
-  }) {
-    return index == currentIndex ? 24 : 8;
   }
 }

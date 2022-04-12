@@ -11,6 +11,7 @@ class SliderItemsList extends StatelessWidget {
   final PageController pageController;
   final ValueChanged<int> switchImage;
   final DataValueChanged<int, Color> getColorIndicator;
+  final DuoValueChanged<List<String>, int> viewImage;
 
   const SliderItemsList({
     Key? key,
@@ -18,6 +19,7 @@ class SliderItemsList extends StatelessWidget {
     required this.pageController,
     required this.switchImage,
     required this.getColorIndicator,
+    required this.viewImage,
   }) : super(key: key);
 
   @override
@@ -31,9 +33,12 @@ class SliderItemsList extends StatelessWidget {
                 onPageChanged: switchImage,
                 controller: pageController,
                 itemCount: data.length,
-                itemBuilder: (_, index) => ImagePreview(
-                  imgUrl: data[index],
-                  height: PlacesConstants.imageSliderHeight,
+                itemBuilder: (_, index) => GestureDetector(
+                  onTap: () => viewImage(data, index),
+                  child: ImagePreview(
+                    imgUrl: data[index],
+                    height: PlacesConstants.imageSliderHeight,
+                  ),
                 ),
               ),
               Positioned(

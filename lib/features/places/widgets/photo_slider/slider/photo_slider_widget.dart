@@ -30,6 +30,7 @@ class PhotoSliderWidget extends ElementaryWidget<IPhotoSliderWidgetModel> {
                   pageController: wm.pageController,
                   switchImage: wm.switchImage,
                   getColorIndicator: wm.getColorIndicator,
+                  viewImage: wm.viewImage,
                 ),
                 Positioned(
                   top: 16,

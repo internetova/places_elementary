@@ -1,6 +1,8 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places_elementary/features/app/di/app_scope.dart';
+import 'package:places_elementary/features/navigation/service/coordinator.dart';
+import 'package:places_elementary/features/places/coordinates/place_details_coordinate.dart';
 import 'package:places_elementary/features/places/widgets/photo_slider/slider/photo_slider_model.dart';
 import 'package:places_elementary/features/places/widgets/photo_slider/slider/photo_slider_widget.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +19,8 @@ abstract class IPhotoSliderWidgetModel extends IWidgetModel {
 
   void switchImage(int imageIndex);
 
+  void viewImage(List<String> images, int imageIndex);
+
   Color getColorIndicator(int indicatorIndex);
 
   void goBack();
@@ -28,8 +32,9 @@ PhotoSliderWidgetModel defaultPhotoSliderWidgetModelFactory(BuildContext context
   final model = PhotoSliderModel(
     appDependencies.errorHandler,
   );
+  final coordinator = appDependencies.coordinator;
 
-  return PhotoSliderWidgetModel(model);
+  return PhotoSliderWidgetModel(model, coordinator);
 }
 
 /// Виджет модель для PhotoSliderWidget
@@ -38,6 +43,7 @@ class PhotoSliderWidgetModel extends WidgetModel<PhotoSliderWidget, PhotoSliderM
   /// Текущая страница слайдера
   final _currentImageState = StateNotifier<int>(initValue: 0);
   final _pageController = PageController();
+  final Coordinator _coordinator;
 
   @override
   ListenableState<int> get currentImageState => _currentImageState;
@@ -51,7 +57,17 @@ class PhotoSliderWidgetModel extends WidgetModel<PhotoSliderWidget, PhotoSliderM
   @override
   Color get iconColorButtonBack => Theme.of(context).colorScheme.onPrimary;
 
-  PhotoSliderWidgetModel(PhotoSliderModel model) : super(model);
+  PhotoSliderWidgetModel(
+    PhotoSliderModel model,
+    this._coordinator,
+  ) : super(model);
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
 
   @override
   void switchImage(int imageIndex) {
@@ -69,5 +85,17 @@ class PhotoSliderWidgetModel extends WidgetModel<PhotoSliderWidget, PhotoSliderM
   @override
   void goBack() {
     Navigator.of(context).pop();
+  }
+
+  @override
+  void viewImage(List<String> images, int imageIndex) {
+    _coordinator.navigate(
+      context,
+      PlaceDetailsCoordinate.photoViewScreen,
+      arguments: {
+        'images': images,
+        'currentIndex': imageIndex,
+      },
+    );
   }
 }
